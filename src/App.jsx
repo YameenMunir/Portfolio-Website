@@ -12,6 +12,7 @@ const sections = [
   { id: 'education', label: 'Education' },
   { id: 'experience', label: 'Experience' },
   { id: 'skills', label: 'Skills' },
+  { id: 'qualifications', label: 'Additional Qualifications' },
   { id: 'projects', label: 'Projects' },
   { id: 'contact', label: 'Contact' },
 ];
@@ -80,7 +81,7 @@ function App() {
         <motion.section id="about" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} viewport={{ once: true }}>
           <h3>About Me</h3>
           <p className="lead">Hello! You've reached the portfolio of <span className="highlight">Yameen Munir</span>. I am an <span className="highlight">AI Enthusiast</span>, <span className="highlight">Python Developer</span>, and <span className="highlight">Data Science Learner</span> currently based in London, UK. I am a final-year BSc (Hons) Computer Science student at London South Bank University, with a strong focus and specialization in Artificial Intelligence, Machine Learning, and Data Science.</p>
-          <p className="lead">I am actively seeking <span className="highlight">AI/ML</span> or <span className="highlight">Data Science</span> roles where I can apply my skills and contribute to innovative projects.</p>
+          <p className="lead">I am actively seeking <span className="highlight">AI/ML</span> or <span className="highlight">Data Science</span> roles where I can apply my skills and contribute to innovative projects. I am available for remote, part-time, full-time, and temporary work opportunities, including onsite roles.</p>
         </motion.section>
         <motion.section id="experience" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} viewport={{ once: true }}>
           <h3>Professional & Program Experience</h3>
@@ -106,6 +107,18 @@ function App() {
             <li><ChartBarIcon className="skill-icon" /> <strong>Data Analysis & Visualization:</strong> Power BI, SQL, statistical modeling for insights <div className="skill-bar"><div className="skill-bar-fill" style={{width:'80%'}}></div></div></li>
             <li><LightBulbIcon className="skill-icon" /> <strong>Research & Problem-Solving:</strong> Strong analytical skills, e-commerce data prediction, algorithm design <div className="skill-bar"><div className="skill-bar-fill" style={{width:'75%'}}></div></div></li>
             <li><UsersIcon className="skill-icon" /> <strong>Collaboration & Communication:</strong> Delivered coding workshops (100+ students), mentored by Microsoft professionals, led career fairs (500+ attendees) <div className="skill-bar"><div className="skill-bar-fill" style={{width:'95%'}}></div></div></li>
+          </ul>
+        </motion.section>
+        <motion.section id="qualifications" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.35 }} viewport={{ once: true }}>
+          <h3>ADDITIONAL QUALIFICATIONS</h3>
+          <ul className="timeline">
+            <li><span className="timeline-dot"></span>AI and Machine Learning Bootcamp | January 2024 - July 2024</li>
+            <li><span className="timeline-dot"></span>Benefits of GitHub Community (LinkedIn Learning) | April 2024</li>
+            <li><span className="timeline-dot"></span>Introduction to SQL (SoloLearn) | May 2024</li>
+            <li><span className="timeline-dot"></span>Learning Power BI Desktop | May 2024</li>
+            <li><span className="timeline-dot"></span>UK Government, Quantum Summer School | August 2024</li>
+            <li><span className="timeline-dot"></span>British Airways - Data Science Job Simulation | September 2024</li>
+            <li><span className="timeline-dot"></span>Introduction to Generative IA | May 2025</li>
           </ul>
         </motion.section>
         <motion.section id="projects" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4 }} viewport={{ once: true }}>
