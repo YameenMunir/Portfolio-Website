@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { AcademicCapIcon, CodeBracketIcon, ChartBarIcon, UsersIcon, LightBulbIcon } from '@heroicons/react/24/solid';
 
 import useSectionFadeIn from './useSectionFadeIn';
+import Contact from './components/Contact';
 
 const sections = [
   { id: 'about', label: 'About' },
@@ -12,6 +13,7 @@ const sections = [
   { id: 'experience', label: 'Experience' },
   { id: 'skills', label: 'Skills' },
   { id: 'projects', label: 'Projects' },
+  { id: 'contact', label: 'Contact' },
 ];
 
 function scrollToSection(id) {
@@ -136,6 +138,9 @@ function App() {
           <ul className="timeline">
             <li><span className="timeline-dot"></span><strong>Simventure Competition 2024:</strong> Participated in a business simulation competition, collaborating with a team of 4 on business decision-making.</li>
           </ul>
+        </motion.section>
+        <motion.section id="contact" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.6 }} viewport={{ once: true }}>
+          <Contact />
         </motion.section>
         {showScroll && (
           <button className="scroll-to-top" onClick={() => window.scrollTo({top:0,behavior:'smooth'})} aria-label="Scroll to top">
