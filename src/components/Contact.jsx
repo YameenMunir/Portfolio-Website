@@ -100,29 +100,33 @@ const Contact = () => {
                 required
               />
             </div>
-          </div>
 
-          <div className="form-row">
             <div className="form-group">
-              <label htmlFor="phone">Phone Number</label>
+              <label htmlFor="phone">
+                Phone Number
+              </label>
               <input
                 type="tel"
                 id="phone"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="+44 7746 681111"
+                placeholder="Your Phone Number (Optional)"
+                pattern="[+0-9\-() ]{7,20}"
+                autoComplete="tel"
               />
             </div>
-            
-            <div className="form-group">
-              <label htmlFor="subject">Subject</label>
-              <select
-                id="subject"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-              >
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="subject">Subject <span className="required">*</span></label>
+            <select
+              id="subject"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
+              required
+            >
                 <option value="">Select a subject...</option>
                 <option value="Job Opportunity">Job Opportunity</option>
                 <option value="Collaboration">Collaboration</option>
@@ -131,7 +135,6 @@ const Contact = () => {
                 <option value="Other">Other</option>
               </select>
             </div>
-          </div>
 
           <div className="form-group">
             <label htmlFor="company">Company/Organization</label>
