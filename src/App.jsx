@@ -1,6 +1,9 @@
 import './App.css';
 import profileImg from './assets/profile.jpg';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { AcademicCapIcon, CodeBracketIcon, ChartBarIcon, UsersIcon, LightBulbIcon } from '@heroicons/react/24/solid';
+
 import useSectionFadeIn from './useSectionFadeIn';
 
 const sections = [
@@ -21,10 +24,16 @@ function scrollToSection(id) {
 function App() {
   useSectionFadeIn();
   const [active, setActive] = useState('about');
+  const [showScroll, setShowScroll] = useState(false);
+
+  // Scroll-to-top button logic
+  window.onscroll = () => {
+    setShowScroll(window.scrollY > 300);
+  };
 
   return (
     <>
-      <header className="header">
+      <header className="header glass-header">
         <div className="container header-content">
           <img src={profileImg} alt="Yameen Munir" className="profile-img" />
           <div>
@@ -48,7 +57,7 @@ function App() {
           </div>
         </div>
       </header>
-      <nav className="navbar">
+      <nav className="navbar glass-navbar">
         <ul>
           {sections.map((s) => (
             <li key={s.id}>
@@ -66,68 +75,75 @@ function App() {
         </ul>
       </nav>
       <main className="container">
-        <section id="about" className="fade-in-section">
+        <motion.section id="about" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} viewport={{ once: true }}>
           <h3>About Me</h3>
-          <p>Hello! You've reached the portfolio of Yameen Munir. I am an AI Enthusiast, Python Developer, and Data Science Learner currently based in London, UK. I am a final-year BSc (Hons) Computer Science student at London South Bank University, with a strong focus and specialization in Artificial Intelligence, Machine Learning, and Data Science.</p>
-          <p>I am actively seeking AI/ML or Data Science roles where I can apply my skills and contribute to innovative projects.</p>
-        </section>
-        <section id="education" className="fade-in-section">
-          <h3>Education</h3>
-          <ul>
-            <li><strong>BSc (Hons) Computer Science</strong>, London South Bank University (Sep 2023 - Present)</li>
-            <li><strong>A Levels & GCSEs</strong>, Brentwood Independent School (Sep 2020 - Jun 2023)</li>
-            <li><strong>Quantum Summer School</strong>, UK Government (Aug 2024)</li>
-          </ul>
-        </section>
-        <section id="experience" className="fade-in-section">
+          <p className="lead">Hello! You've reached the portfolio of <span className="highlight">Yameen Munir</span>. I am an <span className="highlight">AI Enthusiast</span>, <span className="highlight">Python Developer</span>, and <span className="highlight">Data Science Learner</span> currently based in London, UK. I am a final-year BSc (Hons) Computer Science student at London South Bank University, with a strong focus and specialization in Artificial Intelligence, Machine Learning, and Data Science.</p>
+          <p className="lead">I am actively seeking <span className="highlight">AI/ML</span> or <span className="highlight">Data Science</span> roles where I can apply my skills and contribute to innovative projects.</p>
+        </motion.section>
+        <motion.section id="experience" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} viewport={{ once: true }}>
           <h3>Professional & Program Experience</h3>
-          <ul>
-            <li><strong>Customer Service Specialist</strong> at Youshiko LTD (Jan 2020 - Present): Achieved high customer satisfaction, streamlined communication, and demonstrated software proficiency.</li>
-            <li><strong>CSI Ambassador</strong> at London South Bank University (Jul 2024 - Present): Developed coding workshops and led career fairs to foster computer science passion among students.</li>
-            <li><strong>Mentee</strong> in Microsoft Embrace Program (Oct 2024 - Dec 2024): Participated in an 8-week mentorship, gaining insights from a Microsoft professional.</li>
+          <ul className="timeline">
+            <li><span className="timeline-dot"></span><strong>Customer Service Specialist</strong> at Youshiko LTD (Jan 2020 - Present): Achieved high customer satisfaction, streamlined communication, and demonstrated software proficiency.</li>
+            <li><span className="timeline-dot"></span><strong>CSI Ambassador</strong> at London South Bank University (Jul 2024 - Present): Developed coding workshops and led career fairs to foster computer science passion among students.</li>
+            <li><span className="timeline-dot"></span><strong>Mentee</strong> in Microsoft Embrace Program (Oct 2024 - Dec 2024): Participated in an 8-week mentorship, gaining insights from a Microsoft professional.</li>
           </ul>
-        </section>
-        <section id="skills" className="fade-in-section">
+        </motion.section>
+        <motion.section id="education" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} viewport={{ once: true }}>
+          <h3>Education</h3>
+          <ul className="timeline">
+            <li><span className="timeline-dot"></span><strong>BSc (Hons) Computer Science</strong>, London South Bank University (Sep 2023 - Present)</li>
+            <li><span className="timeline-dot"></span><strong>A Levels & GCSEs</strong>, Brentwood Independent School (Sep 2020 - Jun 2023)</li>
+            <li><span className="timeline-dot"></span><strong>Quantum Summer School</strong>, UK Government (Aug 2024)</li>
+          </ul>
+        </motion.section>
+        <motion.section id="skills" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }} viewport={{ once: true }}>
           <h3>Key Skills</h3>
-          <ul className="skills-list">
-            <li><strong>AI & Machine Learning:</strong> Python (Pandas, NumPy, Scikit-learn, Matplotlib), Jupyter Notebook, data-driven modeling. Completed AI/ML Bootcamp (2024) and British Airways Data Science Simulation (2024).</li>
-            <li><strong>Programming:</strong> Python (advanced), Java, C#, R, SQL</li>
-            <li><strong>Data Analysis & Visualization:</strong> Power BI, SQL, statistical modeling for insights</li>
-            <li><strong>Research & Problem-Solving:</strong> Strong analytical skills, e-commerce data prediction, algorithm design</li>
-            <li><strong>Collaboration & Communication:</strong> Delivered coding workshops (100+ students), mentored by Microsoft professionals, led career fairs (500+ attendees)</li>
+          <ul className="skills-list upgraded-skills">
+            <li><AcademicCapIcon className="skill-icon" /> <strong>AI & Machine Learning:</strong> Python (Pandas, NumPy, Scikit-learn, Matplotlib), Jupyter Notebook, data-driven modeling. <div className="skill-bar"><div className="skill-bar-fill" style={{width:'90%'}}></div></div></li>
+            <li><CodeBracketIcon className="skill-icon" /> <strong>Programming:</strong> Python (advanced), Java, C#, R, SQL <div className="skill-bar"><div className="skill-bar-fill" style={{width:'85%'}}></div></div></li>
+            <li><ChartBarIcon className="skill-icon" /> <strong>Data Analysis & Visualization:</strong> Power BI, SQL, statistical modeling for insights <div className="skill-bar"><div className="skill-bar-fill" style={{width:'80%'}}></div></div></li>
+            <li><LightBulbIcon className="skill-icon" /> <strong>Research & Problem-Solving:</strong> Strong analytical skills, e-commerce data prediction, algorithm design <div className="skill-bar"><div className="skill-bar-fill" style={{width:'75%'}}></div></div></li>
+            <li><UsersIcon className="skill-icon" /> <strong>Collaboration & Communication:</strong> Delivered coding workshops (100+ students), mentored by Microsoft professionals, led career fairs (500+ attendees) <div className="skill-bar"><div className="skill-bar-fill" style={{width:'95%'}}></div></div></li>
           </ul>
-        </section>
-        <section id="projects" className="fade-in-section">
+        </motion.section>
+        <motion.section id="projects" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4 }} viewport={{ once: true }}>
           <h3>Highlighted Projects</h3>
-          <div className="project">
-            <h4>AI-Recipe-Generator</h4>
-            <p>A Streamlit app leveraging Google's Gemini AI to generate personalized recipes based on user input (ingredients, dietary restrictions, meal types).</p>
-            <a className="project-link" href="https://github.com/YameenMunir/AI-Recipe-Generator" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+          <div className="project-grid">
+            <div className="project">
+              <h4>AI-Recipe-Generator</h4>
+              <p>A Streamlit app leveraging Google's Gemini AI to generate personalized recipes based on user input (ingredients, dietary restrictions, meal types).</p>
+              <a className="project-link" href="https://github.com/YameenMunir/AI-Recipe-Generator" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
+            <div className="project">
+              <h4>Cricket Match Data Analysis and Prediction</h4>
+              <p>Comprehensive analysis and machine learning-based prediction of cricket match outcomes, player performance, runs, and wickets.</p>
+              <a className="project-link" href="https://github.com/YameenMunir/Cricket-Match-Data-Analysis-and-Prediction-using-Machine-Learning" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
+            <div className="project">
+              <h4>Diabetes Prediction and Prevention App</h4>
+              <p>A Streamlit app for predicting diabetes risk and providing prevention tips using machine learning models.</p>
+              <a className="project-link" href="https://github.com/YameenMunir/Diabetes-Prediction-and-Prevention-App-with-Streamlit" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
+            <div className="project">
+              <h4>Tokyo Olympics Data Analysis</h4>
+              <p>In-depth data analysis of the Tokyo Olympics, exploring medal distributions, athlete metrics, gender representation, and COVID-19 impact.</p>
+              <a className="project-link" href="https://github.com/YameenMunir/Tokyo-Olympics-Data-analysis" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
           </div>
-          <div className="project">
-            <h4>Cricket Match Data Analysis and Prediction</h4>
-            <p>Comprehensive analysis and machine learning-based prediction of cricket match outcomes, player performance, runs, and wickets.</p>
-            <a className="project-link" href="https://github.com/YameenMunir/Cricket-Match-Data-Analysis-and-Prediction-using-Machine-Learning" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-          </div>
-          <div className="project">
-            <h4>Diabetes Prediction and Prevention App</h4>
-            <p>A Streamlit app for predicting diabetes risk and providing prevention tips using machine learning models.</p>
-            <a className="project-link" href="https://github.com/YameenMunir/Diabetes-Prediction-and-Prevention-App-with-Streamlit" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-          </div>
-          <div className="project">
-            <h4>Tokyo Olympics Data Analysis</h4>
-            <p>In-depth data analysis of the Tokyo Olympics, exploring medal distributions, athlete metrics, gender representation, and COVID-19 impact.</p>
-            <a className="project-link" href="https://github.com/YameenMunir/Tokyo-Olympics-Data-analysis" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-          </div>
-        </section>
-        <section id="extracurricular" className="fade-in-section">
+        </motion.section>
+        <motion.section id="extracurricular" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.5 }} viewport={{ once: true }}>
           <h3>Extracurricular Activities</h3>
-          <ul>
-            <li><strong>Simventure Competition 2024:</strong> Participated in a business simulation competition, collaborating with a team of 4 on business decision-making.</li>
+          <ul className="timeline">
+            <li><span className="timeline-dot"></span><strong>Simventure Competition 2024:</strong> Participated in a business simulation competition, collaborating with a team of 4 on business decision-making.</li>
           </ul>
-        </section>
+        </motion.section>
+        {showScroll && (
+          <button className="scroll-to-top" onClick={() => window.scrollTo({top:0,behavior:'smooth'})} aria-label="Scroll to top">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+          </button>
+        )}
       </main>
-      <footer className="footer">
+      <footer className="footer glass-footer">
         <div className="container">
           <p>&copy; 2025 Yameen Munir. All rights reserved.</p>
         </div>

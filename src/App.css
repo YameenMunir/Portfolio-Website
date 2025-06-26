@@ -8,17 +8,22 @@ html, body, #root {
 body {
   font-family: 'Montserrat', Arial, sans-serif;
   margin: 0;
-  background: #181c24;
+  background: #181c24; /* solid dark blue background, no gradient, no grey */
   color: #e6e6e6;
   min-height: 100vh;
   height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+}
+body::before {
+  content: none;
 }
 
 .header {
-  background: linear-gradient(90deg, #23283b 60%, #0077ff 100%);
-  color: #fff;
+  background: #181c24 !important; /* match body background */
+  color: #e6e6e6;
   padding: 2rem 0 1rem 0;
   box-shadow: 0 2px 12px rgba(0,0,0,0.18);
 }
@@ -44,11 +49,13 @@ body {
   flex: 1 0 auto;
 }
 .navbar {
-  background: #23283b;
+  background: #181c24 !important; /* match body background */
+  color: #e6e6e6;
   box-shadow: 0 2px 8px rgba(0,0,0,0.18);
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 100;
+  width: 100%;
 }
 .navbar ul {
   display: flex;
@@ -78,15 +85,15 @@ main {
   flex: 1 0 auto;
   min-height: 0;
 }
-section {
+section, .card-section {
+  background: #181c24; /* match body background, no overlay/grey */
+  color: #e6e6e6; /* ensure text is visible */
+  border-radius: 18px;
+  box-shadow: 0 4px 32px 0 rgba(31, 38, 135, 0.13);
   margin-bottom: 2.5rem;
-  background: #23283b;
-  border-radius: 14px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
   padding: 2.5rem 3rem;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+  position: relative;
+  border: 1.5px solid rgba(255,255,255,0.08);
 }
 section.fade-in-section {
   opacity: 1;
@@ -114,7 +121,8 @@ h3 {
 }
 .project {
   margin-bottom: 1.2rem;
-  background: #1a2233;
+  background: #181c24;
+  color: #e6e6e6;
   border-radius: 8px;
   padding: 1rem 1.5rem;
   box-shadow: 0 1px 4px rgba(0,119,255,0.08);
@@ -141,7 +149,7 @@ h3 {
   color: #181c24;
 }
 .footer {
-  background: #23283b;
+  background: #181c24 !important; /* match body background */
   color: #b3c0d1;
   text-align: center;
   padding: 1rem 0;
@@ -182,16 +190,176 @@ h3 {
 .phone-link:hover {
   color: #4eaaff;
 }
-@media (max-width: 900px) {
-  .header-content {
-    flex-direction: column;
-    gap: 1.2rem;
-    text-align: center;
+
+/* Glassmorphism and card effects */
+.glass-header, .glass-navbar, .glass-footer {
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+/* Floating navbar */
+.glass-navbar {
+  position: sticky;
+  top: 0.7rem;
+  margin: 0 auto 1.5rem auto;
+  border-radius: 18px;
+  width: 90%;
+  max-width: 900px;
+  z-index: 20;
+  box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.18);
+}
+
+/* Scroll-to-top button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  background: #0077ffcc;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 2rem;
+  box-shadow: 0 4px 16px rgba(0,119,255,0.18);
+  cursor: pointer;
+  z-index: 100;
+  transition: background 0.2s, transform 0.2s;
+}
+.scroll-to-top:hover {
+  background: #4eaaff;
+  transform: translateY(-4px) scale(1.08);
+}
+
+/* Upgraded skills section */
+.upgraded-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding-left: 0;
+}
+.skill-icon {
+  width: 1.5em;
+  height: 1.5em;
+  margin-right: 0.7em;
+  vertical-align: middle;
+  color: #4eaaff;
+}
+.skill-bar {
+  background: #23283b;
+  border-radius: 8px;
+  height: 10px;
+  margin: 0.4em 0 0.2em 2.5em;
+  width: 60%;
+  box-shadow: 0 1px 4px rgba(0,119,255,0.08);
+}
+.skill-bar-fill {
+  background: linear-gradient(90deg, #0077ff 60%, #4eaaff 100%);
+  height: 100%;
+  border-radius: 8px;
+  transition: width 1s cubic-bezier(.4,0,.2,1);
+}
+
+/* New styles from code block */
+.card-section {
+  background: rgba(35, 40, 59, 0.85);
+  border-radius: 18px;
+  box-shadow: 0 4px 32px 0 rgba(31, 38, 135, 0.13);
+  margin-bottom: 2.5rem;
+  padding: 2.5rem 3rem;
+  position: relative;
+}
+.lead {
+  font-size: 1.13rem;
+  color: #e6e6e6;
+  margin-bottom: 0.7em;
+}
+.highlight {
+  color: #4eaaff;
+  font-weight: 700;
+}
+
+/* Timeline style for experience/education */
+.timeline {
+  list-style: none;
+  padding-left: 0;
+  position: relative;
+}
+.timeline li {
+  position: relative;
+  padding-left: 2.2em;
+  margin-bottom: 1.2em;
+}
+.timeline-dot {
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 1em;
+  height: 1em;
+  background: #0077ff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px #0077ff44;
+  border: 2px solid #fff;
+}
+
+/* Project grid */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Modern scroll-to-top button */
+.scroll-to-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.scroll-to-top svg {
+  display: block;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+  .profile-img {
+    position: sticky;
+    top: 2.5rem;
+    left: 0;
+    z-index: 5;
   }
-  section {
+}
+
+/* Responsive improvements */
+@media (max-width: 600px) {
+  .glass-navbar {
+    width: 98%;
+    border-radius: 12px;
+    top: 0.3rem;
+  }
+  .scroll-to-top {
+    bottom: 1.2rem;
+    right: 1.2rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+  .upgraded-skills .skill-bar {
+    width: 90%;
+    margin-left: 1.5em;
+  }
+}
+@media (max-width: 900px) {
+  section, .card-section {
     padding: 1.2rem 0.7rem;
   }
-  .container {
-    width: 98%;
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+  .navbar {
+    width: 100%;
+    border-radius: 0;
+    top: 0;
   }
 }
