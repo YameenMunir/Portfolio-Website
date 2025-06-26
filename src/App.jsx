@@ -139,7 +139,7 @@ function App() {
             <li><span className="timeline-dot"></span><strong>Simventure Competition 2024:</strong> Participated in a business simulation competition, collaborating with a team of 4 on business decision-making.</li>
           </ul>
         </motion.section>
-        <motion.section id="contact" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.6 }} viewport={{ once: true }}>
+        <motion.section id="contact" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.7 }} viewport={{ once: true }}>
           <Contact />
         </motion.section>
         {showScroll && (
