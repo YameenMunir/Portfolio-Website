@@ -713,15 +713,6 @@ h3 {
 .email-link:hover {
   color: #4eaaff;
 }
-.phone-link {
-  color: #b3c0d1;
-  transition: color 0.2s;
-  display: flex;
-  align-items: center;
-}
-.phone-link:hover {
-  color: #4eaaff;
-}
 
 /* Glassmorphism and card effects */
 .glass-header, .glass-navbar, .glass-footer {

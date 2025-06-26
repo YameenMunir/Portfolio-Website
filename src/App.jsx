@@ -53,9 +53,6 @@ function App() {
               <a href="mailto:yameenmunir05@gmail.com" className="email-link" aria-label="Email">
                 <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 13.065 2.4 6.6A2 2 0 0 1 4 6h16a2 2 0 0 1 1.6.6l-9.6 6.465Zm-9.6 7.335V7.47l9.6 6.465 9.6-6.465v12.93A2 2 0 0 1 20 22H4a2 2 0 0 1-1.6-.6Z"/></svg>
               </a>
-              <a href="tel:+447746681111" className="phone-link" aria-label="Phone">
-                <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1v3.5a1 1 0 0 1-1 1C6.48 22 2 17.52 2 12.5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/></svg>
-              </a>
             </div>
           </div>
         </div>
