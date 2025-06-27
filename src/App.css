@@ -1312,169 +1312,176 @@ select:focus-visible {
 
 /* Fix for mobile portrait layout */
 @media (max-width: 600px) and (orientation: portrait) {
+  .container {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
   .header {
-    padding: 1rem 0;
+    padding: 1.5rem 0;
+    text-align: center;
   }
   
   .header-content {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-  
-  .profile-img {
-    width: 120px;
-    height: 120px;
-  }
-  
-  h1 {
-    font-size: 2rem;
-    text-align: center;
-  }
-  
-  h2 {
-    font-size: 1.2rem;
-    text-align: center;
-  }
-  
-  .navbar {
-    flex-direction: column;
     align-items: center;
-    padding: 1rem 0;
-  }
-  
-  .navbar ul {
-    flex-direction: column;
-    width: 100%;
-    padding: 0;
-  }
-  
-  .navbar button {
-    width: 100%;
-    text-align: left;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-  }
-  
-  main {
-    padding: 2rem 0;
-  }
-  
-  section, .card-section {
-    padding: 2rem 1rem;
-  }
-  
-  .project-grid {
-    grid-template-columns: 1fr;
     gap: 1.5rem;
-    grid-template-rows: auto;
-    min-height: auto;
-  }
-  
-  .timeline li {
-    width: 100%;
-    box-sizing: border-box;
-    word-wrap: break-word;
-  }
-  
-  /* Fix skill bars on mobile */
-  .skill-bar {
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-  
-  /* Prevent horizontal scroll */
-  
-  img, video, iframe {
-    max-width: 100%;
-    height: auto;
-  }
-}
-
-/* Extra fixes for very small screens */
-@media (max-width: 360px) and (orientation: portrait) {
-  .header {
-    padding: 0.5rem 0;
+    text-align: center;
   }
   
   .profile-img {
-    width: 80px;
-    height: 80px;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto;
   }
   
   h1 {
-    font-size: 1.5rem;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
     text-align: center;
-  }
-  
-  h2 {
-    font-size: 1rem;
-    text-align: center;
-  }
-  
-  .navbar button {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
-  }
-  
-  .submit-btn {
-    padding: 0.7rem 1.5rem;
-    font-size: 0.9rem;
-  }
-  
-  .contact-item {
-    padding: 0.8rem 1rem;
-  }
-  
-  .social-links {
-    justify-content: center;
-  }
-}
-
-/* Specific adjustments for very small screens */
-@media (min-width: 481px) and (max-width: 600px) and (orientation: portrait) {
-  .header {
-    padding: 0.75rem 0;
-  }
-  
-  .profile-img {
-    width: 100px;
-    height: 100px;
-  }
-  
-  h1 {
-    font-size: 1.8rem;
-    text-align: center;
+    line-height: 1.2;
   }
   
   h2 {
     font-size: 1.1rem;
     text-align: center;
+    white-space: normal;
+    border-right: none;
+    animation: none;
+    margin-bottom: 1rem;
+  }
+
+  .social-links {
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+  
+  .navbar {
+    background: var(--main-bg);
+    border-bottom: 2px solid #4eaaff;
+    position: sticky;
+    top: 0;
+    padding: 0.5rem 0;
+    z-index: 1000;
+  }
+  
+  .navbar ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0.5rem;
+    gap: 1rem;
+    justify-content: flex-start;
+  }
+
+  .navbar ul::-webkit-scrollbar {
+    display: none;
   }
   
   .navbar button {
-    padding: 0.7rem 1.5rem;
-    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    min-width: auto;
+    border-radius: 16px;
   }
   
-  .submit-btn {
-    padding: 0.8rem 1.6rem;
-    font-size: 0.95rem;
+  main {
+    padding: 1.5rem 0;
   }
   
-  .contact-item {
-    padding: 0.9rem 1.2rem;
+  section, .card-section {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+  }
+  
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 1rem;
   }
   
   .project {
     padding: 1.5rem;
+    margin-bottom: 0;
   }
-  
+
+  .project h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .project p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+  }
+
+  .project-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .project-link {
+    width: calc(50% - 0.375rem);
+    text-align: center;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+  }
+
   .project-details {
-    padding: 1rem;
+    margin-top: 1.2rem;
+    padding: 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .project-details ul {
+    padding-left: 1.5rem;
+    margin: 0;
+  }
+
+  .project-details li {
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
   }
   
-  .social-links {
-    justify-content: center;
+  .skill-bar {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+  
+  .skill-icon {
+    width: 1.2em;
+    height: 1.2em;
+  }
+  
+  .upgraded-skills li {
+    padding: 0.8rem 0;
+  }
+  
+  .contact-form-section {
+    padding: 1.5rem;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .scroll-to-top {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 48px;
+    height: 48px;
+  }
+
+  .footer {
+    margin-top: 2rem;
+    padding: 1.5rem 0;
   }
 }
