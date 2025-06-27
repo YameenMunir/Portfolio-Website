@@ -520,6 +520,16 @@ h3 {
   animation: fadeIn 0.3s ease-in-out;
 }
 
+.project-details ul {
+  padding-left: 1.2rem;
+  margin: 0;
+}
+
+.project-details li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -1299,3 +1309,172 @@ select:focus-visible {
 }
 
 /* ===== END MOBILE OPTIMIZATIONS ===== */
+
+/* Fix for mobile portrait layout */
+@media (max-width: 600px) and (orientation: portrait) {
+  .header {
+    padding: 1rem 0;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .profile-img {
+    width: 120px;
+    height: 120px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  
+  .navbar ul {
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+  }
+  
+  .navbar button {
+    width: 100%;
+    text-align: left;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  main {
+    padding: 2rem 0;
+  }
+  
+  section, .card-section {
+    padding: 2rem 1rem;
+  }
+  
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    grid-template-rows: auto;
+    min-height: auto;
+  }
+  
+  .timeline li {
+    width: 100%;
+    box-sizing: border-box;
+    word-wrap: break-word;
+  }
+  
+  /* Fix skill bars on mobile */
+  .skill-bar {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Prevent horizontal scroll */
+  
+  img, video, iframe {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Extra fixes for very small screens */
+@media (max-width: 360px) and (orientation: portrait) {
+  .header {
+    padding: 0.5rem 0;
+  }
+  
+  .profile-img {
+    width: 80px;
+    height: 80px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  .navbar button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  .submit-btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .contact-item {
+    padding: 0.8rem 1rem;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+}
+
+/* Specific adjustments for very small screens */
+@media (min-width: 481px) and (max-width: 600px) and (orientation: portrait) {
+  .header {
+    padding: 0.75rem 0;
+  }
+  
+  .profile-img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  
+  .navbar button {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.95rem;
+  }
+  
+  .submit-btn {
+    padding: 0.8rem 1.6rem;
+    font-size: 0.95rem;
+  }
+  
+  .contact-item {
+    padding: 0.9rem 1.2rem;
+  }
+  
+  .project {
+    padding: 1.5rem;
+  }
+  
+  .project-details {
+    padding: 1rem;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+}
