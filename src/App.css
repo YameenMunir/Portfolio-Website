@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
+:root {
+  --main-bg: #181c24;
+  --card-bg: rgba(35, 40, 59, 0.85);
+  --main-color: #e6e6e6;
+  --border-radius: 18px;
+  --box-shadow: 0 2px 16px 0 rgba(31, 38, 135, 0.10);
+  --border: 1px solid rgba(255,255,255,0.07);
+  --transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+}
+
 /* Enhanced Mobile-First Responsive Design */
 * {
   box-sizing: border-box;
@@ -21,8 +31,8 @@ html, body, #root {
 body {
   font-family: 'Montserrat', Arial, sans-serif;
   margin: 0;
-  background: #181c24; /* solid dark blue background, no gradient, no grey */
-  color: #e6e6e6;
+  background: var(--main-bg); /* solid dark blue background, no gradient, no grey */
+  color: var(--main-color);
   min-height: 100vh;
   height: 100%;
   display: flex;
@@ -39,7 +49,7 @@ body::before {
 }
 
 .header {
-  background: #181c24 !important; /* match body background */
+  background: var(--main-bg) !important; /* match body background */
   color: #e6e6e6;
   padding: 2rem 0 1rem 0;
   box-shadow: 0 2px 12px rgba(0,0,0,0.18);
@@ -126,25 +136,26 @@ main {
   min-height: 0;
 }
 section, .card-section {
-  background: #181c24; /* match body background, no overlay/grey */
-  color: #e6e6e6; /* ensure text is visible */
-  border-radius: 18px;
-  box-shadow: 0 4px 32px 0 rgba(31, 38, 135, 0.13);
-  margin-bottom: 3rem;
-  padding: 2rem 3.5rem;
+  background: var(--main-bg);
+  color: var(--main-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 2rem;
+  padding: 1.5rem 2rem;
   position: relative;
-  border: 1.5px solid rgba(255,255,255,0.08);
+  border: var(--border);
+  /* Remove unnecessary transitions for performance */
 }
 .card-section {
-  background: rgba(35, 40, 59, 0.85);
-  border-radius: 18px;
-  box-shadow: 0 4px 32px 0 rgba(31, 38, 135, 0.13);
-  margin-bottom: 3rem;
-  padding: 2rem 3.5rem;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 2rem;
+  padding: 1.5rem 2rem;
   position: relative;
-  border: 1.5px solid rgba(255,255,255,0.08);
-  transition: all 0.3s ease;
-  transform: translateY(20px);
+  border: var(--border);
+  transition: var(--transition);
+  transform: translateY(16px);
   opacity: 0;
 }
 .card-section:hover {
