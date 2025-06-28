@@ -6,6 +6,7 @@ import { AcademicCapIcon, CodeBracketIcon, ChartBarIcon, UsersIcon, LightBulbIco
 
 import useSectionFadeIn from './useSectionFadeIn';
 import Contact from './components/Contact';
+import ProjectCard from './components/ProjectCard';
 
 const sections = [
   { id: 'about', label: 'About' },
@@ -98,6 +99,16 @@ function App() {
           <p className="lead">Hello! You've reached the portfolio of <span className="highlight">Yameen Munir</span>. I am an <span className="highlight">AI Enthusiast</span>, <span className="highlight">Python Developer</span>, and <span className="highlight">Data Science Learner</span> currently based in London, UK. I am a final-year BSc (Hons) Computer Science student at London South Bank University, with a strong focus and specialization in Artificial Intelligence, Machine Learning, and Data Science.</p>
           <p className="lead">I am actively seeking <span className="highlight">AI/ML</span> or <span className="highlight">Data Science</span> roles where I can apply my skills and contribute to innovative projects. I am available for remote, part-time, full-time, and temporary work opportunities, including onsite roles.</p>
         </motion.section>
+        <motion.section id="skills" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} viewport={{ once: true }}>
+          <h3>Key Skills</h3>
+          <ul className="skills-list upgraded-skills">
+            <li><AcademicCapIcon className="skill-icon" /> <strong>AI & Machine Learning:</strong> Python (Pandas, NumPy, Scikit-learn, Matplotlib), Jupyter Notebook, data-driven modeling. <div className="skill-bar"><div className="skill-bar-fill" style={{width:'90%'}}></div></div></li>
+            <li><CodeBracketIcon className="skill-icon" /> <strong>Programming:</strong> Python (advanced), Java, C#, R, SQL <div className="skill-bar"><div className="skill-bar-fill" style={{width:'85%'}}></div></div></li>
+            <li><ChartBarIcon className="skill-icon" /> <strong>Data Analysis & Visualization:</strong> Power BI, SQL, statistical modeling for insights <div className="skill-bar"><div className="skill-bar-fill" style={{width:'80%'}}></div></div></li>
+            <li><LightBulbIcon className="skill-icon" /> <strong>Research & Problem-Solving:</strong> Strong analytical skills, e-commerce data prediction, algorithm design <div className="skill-bar"><div className="skill-bar-fill" style={{width:'75%'}}></div></div></li>
+            <li><UsersIcon className="skill-icon" /> <strong>Collaboration & Communication:</strong> Delivered coding workshops (100+ students), mentored by Microsoft professionals, led career fairs (500+ attendees) <div className="skill-bar"><div className="skill-bar-fill" style={{width:'95%'}}></div></div></li>
+          </ul>
+        </motion.section>
         <motion.section id="experience" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} viewport={{ once: true }}>
           <h3>Professional & Program Experience</h3>
           <ul className="timeline">
@@ -112,16 +123,6 @@ function App() {
             <li><span className="timeline-dot"></span><strong>BSc (Hons) Computer Science</strong>, London South Bank University (Sep 2023 - Present)</li>
             <li><span className="timeline-dot"></span><strong>A Levels & GCSEs</strong>, Brentwood Independent School (Sep 2020 - Jun 2023)</li>
             <li><span className="timeline-dot"></span><strong>Quantum Summer School</strong>, UK Government (Aug 2024)</li>
-          </ul>
-        </motion.section>
-        <motion.section id="skills" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }} viewport={{ once: true }}>
-          <h3>Key Skills</h3>
-          <ul className="skills-list upgraded-skills">
-            <li><AcademicCapIcon className="skill-icon" /> <strong>AI & Machine Learning:</strong> Python (Pandas, NumPy, Scikit-learn, Matplotlib), Jupyter Notebook, data-driven modeling. <div className="skill-bar"><div className="skill-bar-fill" style={{width:'90%'}}></div></div></li>
-            <li><CodeBracketIcon className="skill-icon" /> <strong>Programming:</strong> Python (advanced), Java, C#, R, SQL <div className="skill-bar"><div className="skill-bar-fill" style={{width:'85%'}}></div></div></li>
-            <li><ChartBarIcon className="skill-icon" /> <strong>Data Analysis & Visualization:</strong> Power BI, SQL, statistical modeling for insights <div className="skill-bar"><div className="skill-bar-fill" style={{width:'80%'}}></div></div></li>
-            <li><LightBulbIcon className="skill-icon" /> <strong>Research & Problem-Solving:</strong> Strong analytical skills, e-commerce data prediction, algorithm design <div className="skill-bar"><div className="skill-bar-fill" style={{width:'75%'}}></div></div></li>
-            <li><UsersIcon className="skill-icon" /> <strong>Collaboration & Communication:</strong> Delivered coding workshops (100+ students), mentored by Microsoft professionals, led career fairs (500+ attendees) <div className="skill-bar"><div className="skill-bar-fill" style={{width:'95%'}}></div></div></li>
           </ul>
         </motion.section>
         <motion.section id="qualifications" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.35 }} viewport={{ once: true }}>
@@ -139,30 +140,26 @@ function App() {
         <motion.section id="projects" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4 }} viewport={{ once: true }}>
           <h3>Highlighted Projects</h3>
           <div className="project-grid">
-            <ProjectCard
-              title="AI-Recipe-Generator"
-              summary="A Streamlit app leveraging Google's Gemini AI to generate personalized recipes based on user input (ingredients, dietary restrictions, meal types)."
-              details="Built with Streamlit and Gemini AI API. Features user-friendly UI, dietary filters, and instant recipe generation. Utilizes prompt engineering for accurate results."
-              github="https://github.com/YameenMunir/AI-Recipe-Generator"
-            />
-            <ProjectCard
-              title="Cricket Match Data Analysis and Prediction"
-              summary="Comprehensive analysis and machine learning-based prediction of cricket match outcomes, player performance, runs, and wickets."
-              details="Used Python, Pandas, and scikit-learn for data cleaning, feature engineering, and model building. Visualized insights with Matplotlib. Achieved high accuracy in match outcome prediction."
-              github="https://github.com/YameenMunir/Cricket-Match-Data-Analysis-and-Prediction-using-Machine-Learning"
-            />
-            <ProjectCard
-              title="Diabetes Prediction and Prevention App"
-              summary="A Streamlit app for predicting diabetes risk and providing prevention tips using machine learning models."
-              details="Implements logistic regression and decision tree models. Provides actionable health tips. Clean UI and real-time predictions."
-              github="https://github.com/YameenMunir/Diabetes-Prediction-and-Prevention-App-with-Streamlit"
-            />
-            <ProjectCard
-              title="Tokyo Olympics Data Analysis"
-              summary="In-depth data analysis of the Tokyo Olympics, exploring medal distributions, athlete metrics, gender representation, and COVID-19 impact."
-              details="Explored large datasets with Python, created interactive charts, and presented key findings on gender and country performance."
-              github="https://github.com/YameenMunir/Tokyo-Olympics-Data-analysis"
-            />
+            <div className="project">
+              <h4>AI-Recipe-Generator</h4>
+              <p>A Streamlit app leveraging Google's Gemini AI to generate personalized recipes based on user input (ingredients, dietary restrictions, meal types).</p>
+              <a className="project-link" href="https://github.com/YameenMunir/AI-Recipe-Generator" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
+            <div className="project">
+              <h4>Cricket Match Data Analysis and Prediction</h4>
+              <p>Comprehensive analysis and machine learning-based prediction of cricket match outcomes, player performance, runs, and wickets.</p>
+              <a className="project-link" href="https://github.com/YameenMunir/Cricket-Match-Data-Analysis-and-Prediction-using-Machine-Learning" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
+            <div className="project">
+              <h4>Diabetes Prediction and Prevention App</h4>
+              <p>A Streamlit app for predicting diabetes risk and providing prevention tips using machine learning models.</p>
+              <a className="project-link" href="https://github.com/YameenMunir/Diabetes-Prediction-and-Prevention-App-with-Streamlit" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
+            <div className="project">
+              <h4>Tokyo Olympics Data Analysis</h4>
+              <p>In-depth data analysis of the Tokyo Olympics, exploring medal distributions, athlete metrics, gender representation, and COVID-19 impact.</p>
+              <a className="project-link" href="https://github.com/YameenMunir/Tokyo-Olympics-Data-analysis" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
           </div>
         </motion.section>
         <motion.section id="extracurricular" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.5 }} viewport={{ once: true }}>
