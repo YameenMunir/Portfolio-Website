@@ -61,19 +61,8 @@ function App() {
           </div>
         </div>
       </header>
-      <nav className="cinematic-navbar">
-        <div className="navbar-left">
-          <div className="navbar-logo">
-            <span className="logo-initials">YM</span>
-          </div>
-        </div>
-        <button className="navbar-toggle" aria-label="Toggle navigation" onClick={() => {
-          const nav = document.querySelector('.navbar-links');
-          nav && nav.classList.toggle('open');
-        }}>
-          &#9776;
-        </button>
-        <ul className="navbar-links">
+      <nav className="navbar glass-navbar">
+        <ul>
           {sections.map((s) => (
             <li key={s.id}>
               <button
@@ -81,9 +70,6 @@ function App() {
                 onClick={() => {
                   setActive(s.id);
                   scrollToSection(s.id);
-                  // Close mobile nav after click
-                  const nav = document.querySelector('.navbar-links');
-                  nav && nav.classList.remove('open');
                 }}
               >
                 {s.label}
@@ -139,30 +125,26 @@ function App() {
         <motion.section id="projects" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4 }} viewport={{ once: true }}>
           <h3>Highlighted Projects</h3>
           <div className="project-grid">
-            <ProjectCard
-              title="AI-Recipe-Generator"
-              summary="A Streamlit app leveraging Google's Gemini AI to generate personalized recipes based on user input (ingredients, dietary restrictions, meal types)."
-              details="Built with Streamlit and Gemini AI API. Features user-friendly UI, dietary filters, and instant recipe generation. Utilizes prompt engineering for accurate results."
-              github="https://github.com/YameenMunir/AI-Recipe-Generator"
-            />
-            <ProjectCard
-              title="Cricket Match Data Analysis and Prediction"
-              summary="Comprehensive analysis and machine learning-based prediction of cricket match outcomes, player performance, runs, and wickets."
-              details="Used Python, Pandas, and scikit-learn for data cleaning, feature engineering, and model building. Visualized insights with Matplotlib. Achieved high accuracy in match outcome prediction."
-              github="https://github.com/YameenMunir/Cricket-Match-Data-Analysis-and-Prediction-using-Machine-Learning"
-            />
-            <ProjectCard
-              title="Diabetes Prediction and Prevention App"
-              summary="A Streamlit app for predicting diabetes risk and providing prevention tips using machine learning models."
-              details="Implements logistic regression and decision tree models. Provides actionable health tips. Clean UI and real-time predictions."
-              github="https://github.com/YameenMunir/Diabetes-Prediction-and-Prevention-App-with-Streamlit"
-            />
-            <ProjectCard
-              title="Tokyo Olympics Data Analysis"
-              summary="In-depth data analysis of the Tokyo Olympics, exploring medal distributions, athlete metrics, gender representation, and COVID-19 impact."
-              details="Explored large datasets with Python, created interactive charts, and presented key findings on gender and country performance."
-              github="https://github.com/YameenMunir/Tokyo-Olympics-Data-analysis"
-            />
+            <div className="project">
+              <h4>AI-Recipe-Generator</h4>
+              <p>A Streamlit app leveraging Google's Gemini AI to generate personalized recipes based on user input (ingredients, dietary restrictions, meal types).</p>
+              <a className="project-link" href="https://github.com/YameenMunir/AI-Recipe-Generator" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
+            <div className="project">
+              <h4>Cricket Match Data Analysis and Prediction</h4>
+              <p>Comprehensive analysis and machine learning-based prediction of cricket match outcomes, player performance, runs, and wickets.</p>
+              <a className="project-link" href="https://github.com/YameenMunir/Cricket-Match-Data-Analysis-and-Prediction-using-Machine-Learning" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
+            <div className="project">
+              <h4>Diabetes Prediction and Prevention App</h4>
+              <p>A Streamlit app for predicting diabetes risk and providing prevention tips using machine learning models.</p>
+              <a className="project-link" href="https://github.com/YameenMunir/Diabetes-Prediction-and-Prevention-App-with-Streamlit" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
+            <div className="project">
+              <h4>Tokyo Olympics Data Analysis</h4>
+              <p>In-depth data analysis of the Tokyo Olympics, exploring medal distributions, athlete metrics, gender representation, and COVID-19 impact.</p>
+              <a className="project-link" href="https://github.com/YameenMunir/Tokyo-Olympics-Data-analysis" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
           </div>
         </motion.section>
         <motion.section id="extracurricular" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.5 }} viewport={{ once: true }}>
@@ -186,21 +168,6 @@ function App() {
         </div>
       </footer>
     </>
-  );
-}
-
-function ProjectCard({ title, summary, details, github }) {
-  const [showMore, setShowMore] = useState(false);
-  return (
-    <div className="project">
-      <h4>{title}</h4>
-      <p>{summary}</p>
-      {showMore && <div className="project-details"><p>{details}</p></div>}
-      <button className="show-more-btn" onClick={() => setShowMore((v) => !v)}>
-        {showMore ? 'Show Less' : 'Show More'}
-      </button>
-      <a className="project-link" href={github} target="_blank" rel="noopener noreferrer">View on GitHub</a>
-    </div>
   );
 }
 
