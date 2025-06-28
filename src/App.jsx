@@ -36,13 +36,17 @@ function App() {
 
   return (
     <>
-      <header className="header glass-header">
+      <div className="cinematic-bg">
+        <div className="cinematic-gradient"></div>
+        <div className="cinematic-lights"></div>
+      </div>
+      <header className="header glass-header cinematic-hero">
         <div className="container header-content">
-          <img src={profileImg} alt="Yameen Munir" className="profile-img" />
+          <img src={profileImg} alt="Yameen Munir" className="profile-img cinematic-img" />
           <div>
-            <h1>Yameen Munir</h1>
-            <h2>AI Enthusiast | Python Developer | Data Science Learner</h2>
-            <p>Based in London, UK</p>
+            <h1 className="cinematic-title">Yameen Munir</h1>
+            <h2 className="cinematic-subtitle">AI Enthusiast | Python Developer | Data Science Learner</h2>
+            <p className="cinematic-location">Based in London, UK</p>
             <div className="social-links">
               <a href="https://www.linkedin.com/in/yameen-munir/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.838-1.563 3.034 0 3.595 1.997 3.595 4.59v5.606z"/></svg>
@@ -57,8 +61,19 @@ function App() {
           </div>
         </div>
       </header>
-      <nav className="navbar glass-navbar">
-        <ul>
+      <nav className="cinematic-navbar">
+        <div className="navbar-left">
+          <div className="navbar-logo">
+            <span className="logo-initials">YM</span>
+          </div>
+        </div>
+        <button className="navbar-toggle" aria-label="Toggle navigation" onClick={() => {
+          const nav = document.querySelector('.navbar-links');
+          nav && nav.classList.toggle('open');
+        }}>
+          &#9776;
+        </button>
+        <ul className="navbar-links">
           {sections.map((s) => (
             <li key={s.id}>
               <button
@@ -66,6 +81,9 @@ function App() {
                 onClick={() => {
                   setActive(s.id);
                   scrollToSection(s.id);
+                  // Close mobile nav after click
+                  const nav = document.querySelector('.navbar-links');
+                  nav && nav.classList.remove('open');
                 }}
               >
                 {s.label}
@@ -121,26 +139,30 @@ function App() {
         <motion.section id="projects" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4 }} viewport={{ once: true }}>
           <h3>Highlighted Projects</h3>
           <div className="project-grid">
-            <div className="project">
-              <h4>AI-Recipe-Generator</h4>
-              <p>A Streamlit app leveraging Google's Gemini AI to generate personalized recipes based on user input (ingredients, dietary restrictions, meal types).</p>
-              <a className="project-link" href="https://github.com/YameenMunir/AI-Recipe-Generator" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-            </div>
-            <div className="project">
-              <h4>Cricket Match Data Analysis and Prediction</h4>
-              <p>Comprehensive analysis and machine learning-based prediction of cricket match outcomes, player performance, runs, and wickets.</p>
-              <a className="project-link" href="https://github.com/YameenMunir/Cricket-Match-Data-Analysis-and-Prediction-using-Machine-Learning" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-            </div>
-            <div className="project">
-              <h4>Diabetes Prediction and Prevention App</h4>
-              <p>A Streamlit app for predicting diabetes risk and providing prevention tips using machine learning models.</p>
-              <a className="project-link" href="https://github.com/YameenMunir/Diabetes-Prediction-and-Prevention-App-with-Streamlit" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-            </div>
-            <div className="project">
-              <h4>Tokyo Olympics Data Analysis</h4>
-              <p>In-depth data analysis of the Tokyo Olympics, exploring medal distributions, athlete metrics, gender representation, and COVID-19 impact.</p>
-              <a className="project-link" href="https://github.com/YameenMunir/Tokyo-Olympics-Data-analysis" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-            </div>
+            <ProjectCard
+              title="AI-Recipe-Generator"
+              summary="A Streamlit app leveraging Google's Gemini AI to generate personalized recipes based on user input (ingredients, dietary restrictions, meal types)."
+              details="Built with Streamlit and Gemini AI API. Features user-friendly UI, dietary filters, and instant recipe generation. Utilizes prompt engineering for accurate results."
+              github="https://github.com/YameenMunir/AI-Recipe-Generator"
+            />
+            <ProjectCard
+              title="Cricket Match Data Analysis and Prediction"
+              summary="Comprehensive analysis and machine learning-based prediction of cricket match outcomes, player performance, runs, and wickets."
+              details="Used Python, Pandas, and scikit-learn for data cleaning, feature engineering, and model building. Visualized insights with Matplotlib. Achieved high accuracy in match outcome prediction."
+              github="https://github.com/YameenMunir/Cricket-Match-Data-Analysis-and-Prediction-using-Machine-Learning"
+            />
+            <ProjectCard
+              title="Diabetes Prediction and Prevention App"
+              summary="A Streamlit app for predicting diabetes risk and providing prevention tips using machine learning models."
+              details="Implements logistic regression and decision tree models. Provides actionable health tips. Clean UI and real-time predictions."
+              github="https://github.com/YameenMunir/Diabetes-Prediction-and-Prevention-App-with-Streamlit"
+            />
+            <ProjectCard
+              title="Tokyo Olympics Data Analysis"
+              summary="In-depth data analysis of the Tokyo Olympics, exploring medal distributions, athlete metrics, gender representation, and COVID-19 impact."
+              details="Explored large datasets with Python, created interactive charts, and presented key findings on gender and country performance."
+              github="https://github.com/YameenMunir/Tokyo-Olympics-Data-analysis"
+            />
           </div>
         </motion.section>
         <motion.section id="extracurricular" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.5 }} viewport={{ once: true }}>
@@ -164,6 +186,21 @@ function App() {
         </div>
       </footer>
     </>
+  );
+}
+
+function ProjectCard({ title, summary, details, github }) {
+  const [showMore, setShowMore] = useState(false);
+  return (
+    <div className="project">
+      <h4>{title}</h4>
+      <p>{summary}</p>
+      {showMore && <div className="project-details"><p>{details}</p></div>}
+      <button className="show-more-btn" onClick={() => setShowMore((v) => !v)}>
+        {showMore ? 'Show Less' : 'Show More'}
+      </button>
+      <a className="project-link" href={github} target="_blank" rel="noopener noreferrer">View on GitHub</a>
+    </div>
   );
 }
 
