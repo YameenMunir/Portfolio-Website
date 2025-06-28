@@ -28,10 +28,18 @@ function App() {
   useSectionFadeIn();
   const [active, setActive] = useState('about');
   const [showScroll, setShowScroll] = useState(false);
+  const [expandedProjects, setExpandedProjects] = useState({});
 
   // Scroll-to-top button logic
   window.onscroll = () => {
     setShowScroll(window.scrollY > 300);
+  };
+
+  const toggleProjectDetails = (projectId) => {
+    setExpandedProjects(prev => ({
+      ...prev,
+      [projectId]: !prev[projectId]
+    }));
   };
 
   return (
@@ -124,22 +132,126 @@ function App() {
             <div className="project">
               <h4>AI-Recipe-Generator</h4>
               <p>A Streamlit app leveraging Google's Gemini AI to generate personalized recipes based on user input (ingredients, dietary restrictions, meal types).</p>
-              <a className="project-link" href="https://github.com/YameenMunir/AI-Recipe-Generator" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+              {expandedProjects['recipe-generator'] && (
+                <div className="project-details">
+                  <h5>Key Features:</h5>
+                  <ul>
+                    <li>Real-time recipe generation using Gemini AI</li>
+                    <li>Customizable dietary preferences</li>
+                    <li>Ingredient-based recipe suggestions</li>
+                    <li>User-friendly Streamlit interface</li>
+                  </ul>
+                  <h5>Technologies Used:</h5>
+                  <ul>
+                    <li>Python</li>
+                    <li>Streamlit</li>
+                    <li>Google Gemini AI</li>
+                    <li>Natural Language Processing</li>
+                  </ul>
+                </div>
+              )}
+              <div className="project-actions">
+                <a className="project-link" href="https://github.com/YameenMunir/AI-Recipe-Generator" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                <button 
+                  className="details-button"
+                  onClick={() => toggleProjectDetails('recipe-generator')}
+                >
+                  {expandedProjects['recipe-generator'] ? 'Show Less' : 'Show More'}
+                </button>
+              </div>
             </div>
             <div className="project">
               <h4>Cricket Match Data Analysis and Prediction</h4>
               <p>Comprehensive analysis and machine learning-based prediction of cricket match outcomes, player performance, runs, and wickets.</p>
-              <a className="project-link" href="https://github.com/YameenMunir/Cricket-Match-Data-Analysis-and-Prediction-using-Machine-Learning" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+              {expandedProjects['cricket-analysis'] && (
+                <div className="project-details">
+                  <h5>Key Features:</h5>
+                  <ul>
+                    <li>Match outcome prediction</li>
+                    <li>Player performance analytics</li>
+                    <li>Statistical modeling</li>
+                    <li>Interactive visualizations</li>
+                  </ul>
+                  <h5>Technologies Used:</h5>
+                  <ul>
+                    <li>Python</li>
+                    <li>Pandas & NumPy</li>
+                    <li>Scikit-learn</li>
+                    <li>Matplotlib & Seaborn</li>
+                  </ul>
+                </div>
+              )}
+              <div className="project-actions">
+                <a className="project-link" href="https://github.com/YameenMunir/Cricket-Match-Data-Analysis-and-Prediction-using-Machine-Learning" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                <button 
+                  className="details-button"
+                  onClick={() => toggleProjectDetails('cricket-analysis')}
+                >
+                  {expandedProjects['cricket-analysis'] ? 'Show Less' : 'Show More'}
+                </button>
+              </div>
             </div>
             <div className="project">
               <h4>Diabetes Prediction and Prevention App</h4>
               <p>A Streamlit app for predicting diabetes risk and providing prevention tips using machine learning models.</p>
-              <a className="project-link" href="https://github.com/YameenMunir/Diabetes-Prediction-and-Prevention-App-with-Streamlit" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+              {expandedProjects['diabetes-app'] && (
+                <div className="project-details">
+                  <h5>Key Features:</h5>
+                  <ul>
+                    <li>Risk prediction using ML models</li>
+                    <li>Personalized prevention tips</li>
+                    <li>Interactive data visualization</li>
+                    <li>User-friendly input form</li>
+                  </ul>
+                  <h5>Technologies Used:</h5>
+                  <ul>
+                    <li>Python</li>
+                    <li>Streamlit</li>
+                    <li>Scikit-learn</li>
+                    <li>Pandas & NumPy</li>
+                  </ul>
+                </div>
+              )}
+              <div className="project-actions">
+                <a className="project-link" href="https://github.com/YameenMunir/Diabetes-Prediction-and-Prevention-App-with-Streamlit" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                <button 
+                  className="details-button"
+                  onClick={() => toggleProjectDetails('diabetes-app')}
+                >
+                  {expandedProjects['diabetes-app'] ? 'Show Less' : 'Show More'}
+                </button>
+              </div>
             </div>
             <div className="project">
               <h4>Tokyo Olympics Data Analysis</h4>
               <p>In-depth data analysis of the Tokyo Olympics, exploring medal distributions, athlete metrics, gender representation, and COVID-19 impact.</p>
-              <a className="project-link" href="https://github.com/YameenMunir/Tokyo-Olympics-Data-analysis" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+              {expandedProjects['tokyo-olympics'] && (
+                <div className="project-details">
+                  <h5>Key Features:</h5>
+                  <ul>
+                    <li>Medal distribution analysis</li>
+                    <li>Athlete performance metrics</li>
+                    <li>Gender representation insights</li>
+                    <li>COVID-19 impact assessment</li>
+                  </ul>
+                  <h5>Technologies Used:</h5>
+                  <ul>
+                    <li>Python</li>
+                    <li>Pandas</li>
+                    <li>Matplotlib & Seaborn</li>
+                    <li>Jupyter Notebook</li>
+                  </ul>
+                </div>
+              )}
+              <div className="project-actions">
+                <a className="project-link" href="https://github.com/YameenMunir/Tokyo-Olympics-Data-analysis" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                <button 
+                  className="details-button"
+                  onClick={() => toggleProjectDetails('tokyo-olympics')}
+                >
+                  {expandedProjects['tokyo-olympics'] ? 'Show Less' : 'Show More'}
+                </button>
+              </div>
             </div>
           </div>
         </motion.section>

@@ -927,6 +927,67 @@ h3 {
   animation: float 2s ease-in-out infinite;
 }
 
+/* Project Details Styles */
+.project-details {
+  margin: 20px 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-details h5 {
+  color: var(--text-primary);
+  font-size: 16px;
+  margin: 15px 0 10px;
+}
+
+.project-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px;
+}
+
+.project-details li {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 5px;
+  padding-left: 15px;
+  position: relative;
+}
+
+.project-details li:before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--main-color);
+}
+
+.project-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.details-button {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #4eaaff;
+  background: #181c24;
+  border: 1px solid #4eaaff;
+  border-radius: 6px;
+  padding: 0.3rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+.details-button:hover {
+  background: #4eaaff;
+  color: #181c24;
+}
+
 /* ===== MOBILE PORTRAIT SPECIFIC FIXES ===== */
 
 /* Fix viewport and container issues on mobile portrait */
@@ -1077,6 +1138,7 @@ h3 {
   }
   
   .project {
+    width: 100%;
     padding: 0.75rem;
   }
   
