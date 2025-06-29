@@ -1957,3 +1957,15 @@ select:focus-visible {
 .lazy-img.loaded {
   opacity: 1;
 }
+
+.professional-img {
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(31, 38, 135, 0.13), 0 1.5px 8px 0 rgba(0,0,0,0.05);
+  background: #23283b;
+  object-fit: cover;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.professional-img:hover {
+  box-shadow: 0 8px 32px rgba(78, 170, 255, 0.18);
+  transform: scale(1.03);
+}
