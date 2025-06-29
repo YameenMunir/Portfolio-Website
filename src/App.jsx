@@ -85,6 +85,10 @@ function App() {
         </ul>
       </nav>
       <main className="container">
+        {/* Cinematic Blobs for background */}
+        <div className="fixed top-[10%] left-[60%] w-[400px] h-[400px] rounded-full blur-3xl opacity-25 bg-[#4eaaff] z-[-1] animate-blob1 pointer-events-none" />
+        <div className="fixed top-[60%] left-[20%] w-[300px] h-[300px] rounded-full blur-3xl opacity-20 bg-[#00bfff] z-[-1] animate-blob2 pointer-events-none" />
+        <div className="fixed top-[40%] left-[80%] w-[250px] h-[250px] rounded-full blur-3xl opacity-20 bg-[#1e90ff] z-[-1] animate-blob3 pointer-events-none" />
         <motion.section id="about" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} viewport={{ once: true }}>
           <h3>About Me</h3>
           <p className="lead">Hello! I'm <span className="highlight">Yameen Munir</span>, an <span className="highlight">AI enthusiast</span> and <span className="highlight">Python developer</span> based in London. As a final-year BSc (Hons) Computer Science student at London South Bank University, I specialize in <span className="highlight">AI</span>, <span className="highlight">Machine Learning</span>, <span className="highlight">Data Science</span>, and <span className="highlight">Data Analysis</span>.</p>
