@@ -113,11 +113,41 @@ function App() {
         <motion.section id="skills" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }} viewport={{ once: true }}>
           <h3>Key Skills</h3>
           <ul className="timeline">
-            <li><span className="timeline-dot"></span><strong>AI & Machine Learning:</strong> Python (Pandas, NumPy, Scikit-learn, Matplotlib), Jupyter Notebook, data-driven modeling. <div className="skill-bar"><div className="skill-bar-fill" style={{width:'90%'}}></div></div></li>
-            <li><span className="timeline-dot"></span><strong>Programming:</strong> Python (advanced), Java, C#, R, SQL <div className="skill-bar"><div className="skill-bar-fill" style={{width:'85%'}}></div></div></li>
-            <li><span className="timeline-dot"></span><strong>Data Analysis & Visualization:</strong> Power BI, SQL, statistical modeling for insights <div className="skill-bar"><div className="skill-bar-fill" style={{width:'80%'}}></div></div></li>
-            <li><span className="timeline-dot"></span><strong>Research & Problem-Solving:</strong> Strong analytical skills, e-commerce data prediction, algorithm design <div className="skill-bar"><div className="skill-bar-fill" style={{width:'75%'}}></div></div></li>
-            <li><span className="timeline-dot"></span><strong>Collaboration & Communication:</strong> Delivered coding workshops (100+ students), mentored by Microsoft professionals, led career fairs (500+ attendees) <div className="skill-bar"><div className="skill-bar-fill" style={{width:'95%'}}></div></div></li>
+            <li className="skill-item">
+              <span className="timeline-dot"></span>
+              <div className="skill-content">
+                <strong>AI & Machine Learning:</strong> Python (Pandas, NumPy, Scikit-learn, Matplotlib), Jupyter Notebook, data-driven modeling.
+                <div className="skill-bar"><div className="skill-bar-fill" style={{width:'90%'}}></div></div>
+              </div>
+            </li>
+            <li className="skill-item">
+              <span className="timeline-dot"></span>
+              <div className="skill-content">
+                <strong>Programming:</strong> Python (advanced), Java, C#, R, SQL
+                <div className="skill-bar"><div className="skill-bar-fill" style={{width:'85%'}}></div></div>
+              </div>
+            </li>
+            <li className="skill-item">
+              <span className="timeline-dot"></span>
+              <div className="skill-content">
+                <strong>Data Analysis & Visualization:</strong> Power BI, SQL, statistical modeling for insights
+                <div className="skill-bar"><div className="skill-bar-fill" style={{width:'80%'}}></div></div>
+              </div>
+            </li>
+            <li className="skill-item">
+              <span className="timeline-dot"></span>
+              <div className="skill-content">
+                <strong>Research & Problem-Solving:</strong> Strong analytical skills, e-commerce data prediction, algorithm design
+                <div className="skill-bar"><div className="skill-bar-fill" style={{width:'75%'}}></div></div>
+              </div>
+            </li>
+            <li className="skill-item">
+              <span className="timeline-dot"></span>
+              <div className="skill-content">
+                <strong>Collaboration & Communication:</strong> Delivered coding workshops (100+ students), mentored by Microsoft professionals, led career fairs (500+ attendees)
+                <div className="skill-bar"><div className="skill-bar-fill" style={{width:'95%'}}></div></div>
+              </div>
+            </li>
           </ul>
         </motion.section>
         <motion.section id="qualifications" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.35 }} viewport={{ once: true }}>
