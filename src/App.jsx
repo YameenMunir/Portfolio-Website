@@ -6,6 +6,7 @@ import { AcademicCapIcon, CodeBracketIcon, ChartBarIcon, UsersIcon, LightBulbIco
 
 import useSectionFadeIn from './useSectionFadeIn';
 import Contact from './components/Contact';
+import CinematicBackground from './components/CinematicBackground';
 
 const sections = [
   { id: 'about', label: 'About' },
@@ -44,6 +45,7 @@ function App() {
 
   return (
     <>
+      <CinematicBackground />
       <header className="header glass-header">
         <div className="container header-content">
           <img src={profileImg} alt="Yameen Munir" className="profile-img" />
