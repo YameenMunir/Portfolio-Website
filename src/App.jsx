@@ -272,10 +272,8 @@ function App() {
           </button>
         )}
       </main>
-      <footer className="footer glass-footer">
-        <div className="container">
-          <p>&copy; 2025 Yameen Munir. All rights reserved.</p>
-        </div>
+      <footer className="footer-copyright">
+        © 2025 Yameen Munir. All rights reserved.
       </footer>
     </>
   );

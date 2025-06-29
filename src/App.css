@@ -2225,3 +2225,18 @@ select:focus-visible {
 }
 
 /* ===== END MOBILE OPTIMIZATIONS ===== */
+.footer-copyright {
+  width: 100vw;
+  text-align: center;
+  padding: 1rem 0;
+  background: #181818;
+  color: #fff;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
+}
