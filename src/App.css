@@ -184,14 +184,18 @@ body::before {
   min-width: 0; /* Prevents overflow issues */
 }
 .navbar {
-  background: linear-gradient(90deg, #23283b 60%, #0077ff 100%) !important;
+  background: linear-gradient(90deg, rgba(35, 40, 59, 0.75) 60%, rgba(0, 119, 255, 0.8) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   color: #fff;
-  box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.25);
+  box-shadow: 0 4px 32px 0 rgba(31, 38, 135, 0.3);
   position: sticky;
   top: 0;
   z-index: 100;
   width: 100%;
-  border-bottom: 2px solid #4eaaff;
+  border-bottom: 1px solid rgba(78, 170, 255, 0.4);
+  border-radius: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .navbar ul {
   display: flex;
@@ -203,27 +207,33 @@ body::before {
   flex-wrap: wrap;
 }
 .navbar button {
-  background: none;
-  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
   font-weight: 700;
   font-size: 1.1rem;
   cursor: pointer;
   padding: 0.7rem 1.5rem;
   border-radius: 24px;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  box-shadow: 0 2px 8px rgba(0,119,255,0.08);
+  box-shadow: 0 2px 12px rgba(0, 119, 255, 0.1);
   letter-spacing: 0.5px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   /* Enhanced mobile touch */
   min-height: 44px; /* iOS recommended touch target */
   min-width: 44px;
   touch-action: manipulation;
 }
 .navbar button.active, .navbar button:hover {
-  background: #4eaaff;
-  color: #181c24;
-  box-shadow: 0 4px 15px rgba(0, 119, 255, 0.25);
+  background: linear-gradient(135deg, rgba(78, 170, 255, 0.9) 0%, rgba(0, 119, 255, 0.9) 100%);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 20px rgba(78, 170, 255, 0.4);
+  transform: translateY(-2px);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
 }
 main {
   padding: 3rem 0;
