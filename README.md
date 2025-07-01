@@ -1,6 +1,28 @@
 # Yameen Munir - Portfolio Website
 
-A modern, responsive portfolio website showcasing my journey as an AI Enthusiast, Python Developer, and Data Science Learner.
+A modern, responsive portfolio website built with React and Vite, showcasing my journey as an AI Enthusiast, Python Developer, and Data Science Learner. This portfolio features a sleek dark theme, modern UI components, and seamless interactions.
+
+## 🛠️ Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/YameenMunir/Portfolio-Website-1.git
+
+# Navigate to project directory
+cd Portfolio-Website-1
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
 
 ## 🚀 Technologies Used
 
@@ -63,21 +85,74 @@ A modern, responsive portfolio website showcasing my journey as an AI Enthusiast
 
 ## 🌟 UI/UX Features
 
-- Intuitive navigation
-- Consistent styling
-- Visual feedback on interactions
-- Smooth scrolling
-- Responsive typography
-- Loading states and animations
+### Component Details
+- **Navigation Bar:**
+  - Glassmorphic effect with blur backdrop
+  - Smooth sticky positioning
+  - Interactive button states
+  - Mobile-responsive menu
+
+- **Project Cards:**
+  - Gradient hover effects
+  - Action button group
+  - GitHub integration
+  - Live demo links
+  - Smooth transitions
+
+- **Contact Form:**
+  - Real-time validation
+  - Custom styled inputs
+  - Success/error states
+  - Responsive layout
+  - Professional formatting
+
+- **Skill Section:**
+  - Animated progress bars
+  - Category grouping
+  - Visual skill indicators
+  - Interactive elements
+
+### Interaction Features
+- Smooth scroll behavior
+- Hover state animations
+- Form feedback animations
+- Loading state indicators
+- Transition effects
+- Touch-optimized interactions
 
 ## 🎨 Design Philosophy
 
-The website follows a clean, modern design approach with:
-- Consistent color scheme
-- Clear typography hierarchy
-- Proper white space utilization
-- Subtle animations
-- Professional aesthetics
+The website embodies a modern, professional aesthetic with careful attention to detail:
+
+### Color Palette
+- **Primary:** Deep navy (#181c24)
+- **Accent:** Electric blue (#4eaaff)
+- **Text:** Soft white (#e6e6e6)
+- **Secondary:** Steel blue (#b3c0d1)
+- **Gradients:** Custom blue gradients for interactive elements
+
+### Typography
+- **Primary Font:** Montserrat
+- **Weights:** 400 (Regular), 600 (Semi-bold), 700 (Bold)
+- **Hierarchy:**
+  - H1: 2.8rem, Bold
+  - H2: 1.4rem, Regular
+  - H3: 1.6rem, Semi-bold
+  - Body: 1rem, Regular
+
+### Spacing System
+- Base unit: 1rem (16px)
+- Section padding: 2rem
+- Component margins: 1.5rem
+- Grid gaps: 2rem
+- Card padding: 2rem
+
+### Visual Effects
+- Glassmorphism on navigation
+- Subtle shadows for depth
+- Smooth transitions (0.3s)
+- Custom gradient animations
+- Interactive hover states
 
 ## 🔧 Browser Support
 
