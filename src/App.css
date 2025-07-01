@@ -57,8 +57,8 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: radial-gradient(circle at 60% 40%, rgba(78, 170, 255, 0.10) 0%, rgba(19, 24, 39, 0.95) 70%, rgba(9, 14, 29, 1) 100%),
-    linear-gradient(120deg, rgba(78, 170, 255, 0.08) 0%, rgba(0, 119, 255, 0.04) 100%);
+  background: radial-gradient(circle at 60% 40%, rgba(120, 200, 255, 0.18) 0%, rgba(19, 24, 39, 0.90) 70%, rgba(9, 14, 29, 1) 100%),
+    linear-gradient(120deg, rgba(120, 200, 255, 0.13) 0%, rgba(0, 180, 255, 0.08) 100%);
   z-index: -2;
   pointer-events: none;
   transition: background 1s cubic-bezier(0.4,0,0.2,1);
@@ -92,7 +92,7 @@ body::before {
   height: 200%;
   top: -50%;
   left: -50%;
-  background: radial-gradient(circle at 70% 30%, rgba(78, 170, 255, 0.12) 0%, transparent 60%),
+  background: radial-gradient(circle at 70% 30%, rgba(120, 200, 255, 0.18) 0%, transparent 60%),
     url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
   animation: rotate 60s linear infinite;
   opacity: 0.7;
@@ -106,7 +106,7 @@ body::before {
   height: 100%;
   top: 0;
   left: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(78, 170, 255, 0.18) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 0%, rgba(120, 200, 255, 0.22) 0%, transparent 60%);
   animation: pulse 8s ease-in-out infinite;
   opacity: 0.6;
   pointer-events: none;
@@ -146,7 +146,7 @@ body::before {
   position: absolute;
   width: 2.5px;
   height: 2.5px;
-  background: rgba(78, 170, 255, 0.22);
+  background: rgba(120, 200, 255, 0.32);
   border-radius: 50%;
   animation: float-up 10s infinite;
   opacity: 0.7;
@@ -442,7 +442,7 @@ h3 {
   position: relative;
   overflow: hidden;
   min-width: 140px;
-  width: 100%;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -669,6 +669,57 @@ h3 {
   background: #4eaaff;
   color: #181c24;
 }
+
+/* Project actions button group spacing and alignment */
+.project-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.2rem;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.project-link,
+.details-button {
+  margin: 0;
+  min-width: 140px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.details-button {
+  padding: 0.3rem 1.1rem;
+  border-radius: 6px;
+  border: 1px solid #4eaaff;
+  background: #181c24;
+  color: #4eaaff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.details-button:hover {
+  background: #4eaaff;
+  color: #181c24;
+}
+
+@media (max-width: 600px) {
+  .project-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.7rem;
+  }
+  .project-link, .details-button {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Footer Styles */
 .footer {
   background: #181c24 !important; /* match body background */
   color: #b3c0d1;
@@ -1055,7 +1106,7 @@ h3 {
   position: relative;
   overflow: hidden;
   min-width: 140px;
-  width: 100%;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
