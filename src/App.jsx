@@ -30,6 +30,7 @@ function App() {
   const [active, setActive] = useState('about');
   const [showScroll, setShowScroll] = useState(false);
   const [expandedProjects, setExpandedProjects] = useState({});
+  const [navOpen, setNavOpen] = useState(false); // Add state for mobile nav
 
   // Scroll-to-top button logic
   window.onscroll = () => {
@@ -68,21 +69,148 @@ function App() {
         </div>
       </header>
       <nav className="navbar glass-navbar">
-        <ul>
+        {/* Burger icon for mobile */}
+        <button
+          className="burger"
+          aria-label="Open navigation"
+          aria-expanded={navOpen}
+          aria-controls="main-nav"
+          onClick={() => setNavOpen(v => !v)}
+          style={{
+            display: 'none',
+            background: 'none',
+            border: 'none',
+            padding: 0,
+            marginRight: '1rem',
+            cursor: 'pointer',
+            width: '48px',
+            height: '48px',
+            minWidth: '48px',
+            minHeight: '48px',
+            aspectRatio: '1 / 1',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxSizing: 'border-box',
+            borderRadius: 0 // ensure square shape, no rounding
+          }}
+        >
+          {/* Only visible on small screens via CSS */}
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{
+              display: 'block',
+              margin: '0 auto'
+            }}
+          >
+            <line x1="4" y1="7" x2="20" y2="7"/>
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <line x1="4" y1="17" x2="20" y2="17"/>
+          </svg>
+        </button>
+        <ul
+          id="main-nav"
+          className={navOpen ? 'open' : ''}
+          style={{
+            ...(window.innerWidth <= 768
+              ? {
+                  display: navOpen ? 'block' : 'none',
+                  position: 'absolute',
+                  top: '100%',
+                  left: 0,
+                  width: '100%',
+                  // Harmonize with site palette (glass effect, blue/white theme)
+                  background: 'rgba(30, 144, 255, 0.92)', // #1e90ff with opacity
+                  boxShadow: '0 2px 16px rgba(30,144,255,0.12)',
+                  zIndex: 10,
+                  borderRadius: '0 0 1rem 1rem',
+                  backdropFilter: 'blur(8px)',
+                  padding: '1.2rem 0',
+                  textAlign: 'center'
+                }
+              : { display: 'flex' })
+          }}
+        >
           {sections.map((s) => (
-            <li key={s.id}>
+            <li key={s.id} style={window.innerWidth <= 768 ? {margin: '0.6rem 0'} : {}}>
               <button
                 className={active === s.id ? 'active' : ''}
                 onClick={() => {
                   setActive(s.id);
                   scrollToSection(s.id);
+                  setNavOpen(false); // Close nav on mobile after click
                 }}
+                style={
+                  window.innerWidth <= 768
+                    ? {
+                        color: '#fff',
+                        fontSize: '1.15rem',
+                        fontWeight: 600,
+                        background: 'none',
+                        border: 'none',
+                        padding: '0.7rem 1.5rem',
+                        borderRadius: '0.5rem',
+                        transition: 'background 0.2s',
+                        cursor: 'pointer'
+                      }
+                    : {}
+                }
               >
                 {s.label}
               </button>
             </li>
           ))}
         </ul>
+        <style>
+          {`
+            @media (max-width: 768px) {
+              .navbar .burger {
+                display: block !important;
+              }
+              .navbar ul {
+                display: none;
+              }
+              .navbar ul.open {
+                display: block;
+              }
+              .navbar ul.open button.active,
+              .navbar ul.open button:hover {
+                background: rgba(255,255,255,0.12);
+                color: #fff;
+              }
+            }
+            @media (min-width: 769px) {
+              .navbar .burger {
+                display: none !important;
+              }
+              .navbar ul {
+                display: flex !important;
+                position: static !important;
+                background: none !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                padding: 0 !important;
+                text-align: left !important;
+              }
+              .navbar ul li button {
+                color: inherit !important;
+                font-size: inherit !important;
+                font-weight: inherit !important;
+                background: none !important;
+                border: none !important;
+                padding: 0.5rem 1.2rem !important;
+                border-radius: 0.5rem !important;
+              }
+            }
+          `}
+        </style>
       </nav>
       <main className="container">
         {/* Cinematic Blobs for background */}
