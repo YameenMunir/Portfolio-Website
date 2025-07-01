@@ -236,7 +236,7 @@ body::before {
   color: #fff;
   box-shadow: 0 4px 32px 0 rgba(31, 38, 135, 0.3);
   position: sticky;
-  top: 0;
+  top: 2.2rem;
   z-index: 100;
   width: 100%;
   border-bottom: 1px solid rgba(78, 170, 255, 0.4);
@@ -770,7 +770,7 @@ h3 {
 /* Floating navbar */
 .glass-navbar {
   position: sticky;
-  top: 0.7rem;
+  top: 2.2rem;
   margin: 0 auto 1.5rem auto;
   border-radius: 18px;
   width: 90%;
