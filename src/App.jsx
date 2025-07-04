@@ -34,22 +34,6 @@ const sections = [
 
 const projectsData = [
   {
-    id: 'recipe-generator',
-    title: 'AI-Recipe-Generator',
-    description: 'A Streamlit app leveraging Google\'s Gemini AI to generate personalized recipes based on user input (ingredients, dietary restrictions, meal types).',
-    image: '/ai-recipe-generator.png',
-    technologies: ['Python', 'Streamlit', 'Google Gemini AI', 'Natural Language Processing'],
-    features: [
-      'Real-time recipe generation using Gemini AI',
-      'Customizable dietary preferences',
-      'Ingredient-based recipe suggestions',
-      'User-friendly Streamlit interface'
-    ],
-    github: 'https://github.com/YameenMunir/AI-Recipe-Generator',
-    demo: null,
-    category: 'AI/ML'
-  },
-  {
     id: 'cricket-analysis',
     title: 'Cricket Match Data Analysis and Prediction',
     description: 'Comprehensive analysis and machine learning-based prediction of cricket match outcomes, player performance, runs, and wickets.',
@@ -300,7 +284,7 @@ function App() {
               transition={{ duration: 0.8, delay: 1.5 }}
             >
               <div className="stat-item">
-                <span className="stat-number">4+</span>
+                <span className="stat-number">3+</span>
                 <span className="stat-label">Projects</span>
               </div>
               <div className="stat-item">
