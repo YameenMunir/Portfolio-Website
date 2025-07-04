@@ -1,21 +1,102 @@
 import './App.css';
 import profileImg from './assets/profile.jpg';
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { AcademicCapIcon, CodeBracketIcon, ChartBarIcon, UsersIcon, LightBulbIcon } from '@heroicons/react/24/solid';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  AcademicCapIcon, 
+  CodeBracketIcon, 
+  ChartBarIcon, 
+  UsersIcon, 
+  LightBulbIcon,
+  BriefcaseIcon,
+  StarIcon,
+  ArrowUpIcon,
+  DevicePhoneMobileIcon,
+  EnvelopeIcon,
+  MapPinIcon
+} from '@heroicons/react/24/solid';
 
 import useSectionFadeIn from './useSectionFadeIn';
 import Contact from './components/Contact';
 import CinematicBackground from './components/CinematicBackground';
+import ModernProjectCard from './components/ModernProjectCard';
+import Typewriter from './components/Typewriter';
 
 const sections = [
-  { id: 'about', label: 'About' },
-  { id: 'education', label: 'Education' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'qualifications', label: 'Additional Qualifications' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'about', label: 'About', icon: UsersIcon },
+  { id: 'education', label: 'Education', icon: AcademicCapIcon },
+  { id: 'experience', label: 'Experience', icon: BriefcaseIcon },
+  { id: 'skills', label: 'Skills', icon: CodeBracketIcon },
+  { id: 'qualifications', label: 'Certifications', icon: StarIcon },
+  { id: 'projects', label: 'Projects', icon: ChartBarIcon },
+  { id: 'contact', label: 'Contact', icon: EnvelopeIcon },
+];
+
+const projectsData = [
+  {
+    id: 'recipe-generator',
+    title: 'AI-Recipe-Generator',
+    description: 'A Streamlit app leveraging Google\'s Gemini AI to generate personalized recipes based on user input (ingredients, dietary restrictions, meal types).',
+    image: '/ai-recipe-generator.png',
+    technologies: ['Python', 'Streamlit', 'Google Gemini AI', 'Natural Language Processing'],
+    features: [
+      'Real-time recipe generation using Gemini AI',
+      'Customizable dietary preferences',
+      'Ingredient-based recipe suggestions',
+      'User-friendly Streamlit interface'
+    ],
+    github: 'https://github.com/YameenMunir/AI-Recipe-Generator',
+    demo: null,
+    category: 'AI/ML'
+  },
+  {
+    id: 'cricket-analysis',
+    title: 'Cricket Match Data Analysis and Prediction',
+    description: 'Comprehensive analysis and machine learning-based prediction of cricket match outcomes, player performance, runs, and wickets.',
+    image: '/cricket-analysis.png',
+    technologies: ['Python', 'Pandas & NumPy', 'Scikit-learn', 'Matplotlib & Seaborn'],
+    features: [
+      'Match outcome prediction',
+      'Player performance analytics',
+      'Statistical modeling',
+      'Interactive visualizations'
+    ],
+    github: 'https://github.com/YameenMunir/Cricket-Match-Data-Analysis-and-Prediction-using-Machine-Learning',
+    demo: null,
+    category: 'Data Science'
+  },
+  {
+    id: 'diabetes-app',
+    title: 'Diabetes Prediction and Prevention App',
+    description: 'A Streamlit app for predicting diabetes risk and providing prevention tips using machine learning models.',
+    image: '/diabetes-app.png',
+    technologies: ['Python', 'Streamlit', 'Scikit-learn', 'Pandas & NumPy'],
+    features: [
+      'Risk prediction using ML models',
+      'Personalized prevention tips',
+      'Interactive data visualization',
+      'User-friendly input form'
+    ],
+    github: 'https://github.com/YameenMunir/Diabetes-Prediction-and-Prevention-App-with-Streamlit',
+    demo: null,
+    category: 'Healthcare'
+  },
+  {
+    id: 'tokyo-olympics',
+    title: 'Tokyo Olympics Data Analysis',
+    description: 'In-depth data analysis of the Tokyo Olympics, exploring medal distributions, athlete metrics, gender representation, and COVID-19 impact.',
+    image: '/olympics-analysis.png',
+    technologies: ['Python', 'Pandas', 'Matplotlib & Seaborn', 'Jupyter Notebook'],
+    features: [
+      'Medal distribution analysis',
+      'Athlete performance metrics',
+      'Gender representation insights',
+      'COVID-19 impact assessment'
+    ],
+    github: 'https://github.com/YameenMunir/Tokyo-Olympics-Data-analysis',
+    demo: null,
+    category: 'Data Analysis'
+  }
 ];
 
 function scrollToSection(id) {
@@ -29,414 +110,818 @@ function App() {
   useSectionFadeIn();
   const [active, setActive] = useState('about');
   const [showScroll, setShowScroll] = useState(false);
-  const [expandedProjects, setExpandedProjects] = useState({});
-  const [navOpen, setNavOpen] = useState(false); // Add state for mobile nav
+  const [navOpen, setNavOpen] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Scroll-to-top button logic
-  window.onscroll = () => {
-    setShowScroll(window.scrollY > 300);
+  // Enhanced scroll management
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScroll(window.scrollY > 300);
+      
+      // Update active section based on scroll position
+      const sections = document.querySelectorAll('section[id]');
+      const scrollPosition = window.scrollY + 100;
+      
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          setActive(sectionId);
+        }
+      });
+    };
+
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove);
+    
+    // Loading simulation
+    setTimeout(() => setIsLoading(false), 2000);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setActive(id);
+      setNavOpen(false);
+    }
   };
 
-  const toggleProjectDetails = (projectId) => {
-    setExpandedProjects(prev => ({
-      ...prev,
-      [projectId]: !prev[projectId]
-    }));
-  };
+  if (isLoading) {
+    return (
+      <div className="loading-screen">
+        <motion.div 
+          className="loading-content"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="loading-spinner"></div>
+          <h2>Welcome to Yameen's Portfolio</h2>
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <>
       <CinematicBackground />
-      <header className="header glass-header">
-        <div className="container header-content">
-          <img src={profileImg} alt="Yameen Munir" className="profile-img" />
-          <div>
-            <h1>Yameen Munir</h1>
-            <h2>AI Enthusiast | Python Developer | Data Science Learner</h2>
-            <p>Based in London, UK</p>
-            <div className="social-links">
-              <a href="https://www.linkedin.com/in/yameen-munir/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.838-1.563 3.034 0 3.595 1.997 3.595 4.59v5.606z"/></svg>
+      
+      {/* Custom cursor */}
+      <motion.div 
+        className="custom-cursor"
+        animate={{ x: mousePosition.x - 10, y: mousePosition.y - 10 }}
+        transition={{ type: "spring", stiffness: 500, damping: 50 }}
+      />
+      
+      {/* Enhanced Header */}
+      <motion.header 
+        className="modern-header"
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1, delay: 0.2 }}
+      >
+        <div className="header-container">
+          <motion.div 
+            className="header-content"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            <div className="profile-section">
+              <motion.div 
+                className="profile-image-container"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <img src={profileImg} alt="Yameen Munir" className="profile-image-modern" />
+                <div className="profile-ring"></div>
+                <div className="status-indicator"></div>
+              </motion.div>
+              
+              <div className="profile-info">
+                <motion.h1 
+                  className="profile-name"
+                  initial={{ x: -50, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.7 }}
+                >
+                  Yameen Munir
+                </motion.h1>
+                
+                <motion.div 
+                  className="profile-title"
+                  initial={{ x: -50, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.9 }}
+                >
+                  <Typewriter 
+                    texts={[
+                      'AI Enthusiast',
+                      'Python Developer', 
+                      'Data Science Learner',
+                      'Machine Learning Engineer'
+                    ]}
+                    delay={100}
+                    infinite
+                  />
+                </motion.div>
+                
+                <motion.div 
+                  className="profile-location"
+                  initial={{ x: -50, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 1.1 }}
+                >
+                  <MapPinIcon className="location-icon" />
+                  <span>London, UK</span>
+                </motion.div>
+                
+                <motion.div 
+                  className="social-links-modern"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 1.3 }}
+                >
+                  <motion.a 
+                    href="https://www.linkedin.com/in/yameen-munir/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="social-link"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.838-1.563 3.034 0 3.595 1.997 3.595 4.59v5.606z"/>
+                    </svg>
+                  </motion.a>
+                  
+                  <motion.a 
+                    href="https://github.com/YameenMunir" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="social-link"
+                    whileHover={{ scale: 1.1, rotate: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.997.108-.775.418-1.305.762-1.605-2.665-.305-5.466-1.334-5.466-5.931 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.553 3.297-1.23 3.297-1.23.653 1.653.242 2.873.119 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.803 5.624-5.475 5.921.43.371.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                    </svg>
+                  </motion.a>
+                  
+                  <motion.a 
+                    href="mailto:yameenmunir05@gmail.com" 
+                    className="social-link"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <EnvelopeIcon />
+                  </motion.a>
+                </motion.div>
+              </div>
+            </div>
+            
+            <motion.div 
+              className="header-stats"
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1.5 }}
+            >
+              <div className="stat-item">
+                <span className="stat-number">4+</span>
+                <span className="stat-label">Projects</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-number">7+</span>
+                <span className="stat-label">Certifications</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-number">2+</span>
+                <span className="stat-label">Years Experience</span>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </motion.header>
+      {/* Modern Navigation */}
+      <motion.nav 
+        className="modern-navbar"
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 1.7 }}
+      >
+        <div className="nav-container">
+          {/* Mobile menu button */}
+          <motion.button
+            className="mobile-menu-btn"
+            onClick={() => setNavOpen(!navOpen)}
+            whileTap={{ scale: 0.95 }}
+          >
+            <motion.div
+              animate={navOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+              className="burger-line"
+            />
+            <motion.div
+              animate={navOpen ? { opacity: 0 } : { opacity: 1 }}
+              className="burger-line"
+            />
+            <motion.div
+              animate={navOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+              className="burger-line"
+            />
+          </motion.button>
+
+          {/* Navigation items */}
+          <AnimatePresence>
+            <motion.ul 
+              className={`nav-menu ${navOpen ? 'nav-menu-open' : ''}`}
+              initial={false}
+              animate={navOpen ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+            >
+              {sections.map((section, index) => {
+                const IconComponent = section.icon;
+                return (
+                  <motion.li 
+                    key={section.id}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                  >
+                    <motion.button
+                      className={`nav-item ${active === section.id ? 'nav-item-active' : ''}`}
+                      onClick={() => scrollToSection(section.id)}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <IconComponent className="nav-icon" />
+                      <span>{section.label}</span>
+                      {active === section.id && (
+                        <motion.div 
+                          className="nav-indicator"
+                          layoutId="nav-indicator"
+                          transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                        />
+                      )}
+                    </motion.button>
+                  </motion.li>
+                );
+              })}
+            </motion.ul>
+          </AnimatePresence>
+        </div>
+      </motion.nav>
+      <main className="modern-container">
+        {/* Floating background elements */}
+        <div className="floating-elements">
+          <div className="floating-element floating-element-1"></div>
+          <div className="floating-element floating-element-2"></div>
+          <div className="floating-element floating-element-3"></div>
+        </div>
+
+        {/* About Section */}
+        <motion.section 
+          id="about" 
+          className="modern-section"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="section-header">
+            <motion.div 
+              className="section-icon-container"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+            >
+              <UsersIcon className="section-icon" />
+            </motion.div>
+            <div>
+              <h3 className="section-title">About Me</h3>
+              <p className="section-subtitle">Get to know me better</p>
+            </div>
+          </div>
+          
+          <div className="section-content">
+            <motion.div 
+              className="about-content"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <p className="about-text">
+                Hello! I'm <span className="highlight">Yameen Munir</span>, an passionate 
+                <span className="highlight"> AI enthusiast</span> and 
+                <span className="highlight"> Python developer</span> based in London. 
+                As a final-year BSc (Hons) Computer Science student at London South Bank University, 
+                I specialize in <span className="highlight">Artificial Intelligence</span>, 
+                <span className="highlight"> Machine Learning</span>, 
+                <span className="highlight"> Data Science</span>, and 
+                <span className="highlight"> Data Analysis</span>.
+              </p>
+              
+              <p className="about-text">
+                I'm actively seeking opportunities—remote or onsite—where I can apply my skills 
+                and contribute to forward-thinking projects in 
+                <span className="highlight"> AI/ML</span>, 
+                <span className="highlight"> Data Science</span>, and 
+                <span className="highlight"> Data Analysis</span>. 
+                Let's build the future together!
+              </p>
+              
+              <div className="about-highlights">
+                <div className="highlight-item">
+                  <LightBulbIcon className="highlight-icon" />
+                  <span>Innovation Driven</span>
+                </div>
+                <div className="highlight-item">
+                  <CodeBracketIcon className="highlight-icon" />
+                  <span>Tech Enthusiast</span>
+                </div>
+                <div className="highlight-item">
+                  <ChartBarIcon className="highlight-icon" />
+                  <span>Data Focused</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        {/* Experience Section */}
+        <motion.section 
+          id="experience" 
+          className="modern-section"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="section-header">
+            <motion.div 
+              className="section-icon-container"
+              whileHover={{ scale: 1.1, rotate: -5 }}
+            >
+              <BriefcaseIcon className="section-icon" />
+            </motion.div>
+            <div>
+              <h3 className="section-title">Professional Experience</h3>
+              <p className="section-subtitle">My journey in the professional world</p>
+            </div>
+          </div>
+          
+          <div className="timeline-container">
+            <motion.div 
+              className="timeline-item"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="timeline-dot"></div>
+              <div className="timeline-content">
+                <h4>Customer Service Specialist</h4>
+                <p className="timeline-company">Youshiko LTD</p>
+                <p className="timeline-date">Jan 2020 - Present</p>
+                <p className="timeline-description">
+                  Achieved high customer satisfaction, streamlined communication, 
+                  and demonstrated software proficiency in a dynamic environment.
+                </p>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              className="timeline-item"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="timeline-dot"></div>
+              <div className="timeline-content">
+                <h4>CSI Ambassador</h4>
+                <p className="timeline-company">London South Bank University</p>
+                <p className="timeline-date">Jul 2024 - Present</p>
+                <p className="timeline-description">
+                  Developed coding workshops and led career fairs to foster computer science 
+                  passion among students, reaching 100+ participants.
+                </p>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              className="timeline-item"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <div className="timeline-dot"></div>
+              <div className="timeline-content">
+                <h4>Mentee - Microsoft Embrace Program</h4>
+                <p className="timeline-company">Microsoft</p>
+                <p className="timeline-date">Oct 2024 - Dec 2024</p>
+                <p className="timeline-description">
+                  Participated in an intensive 8-week mentorship program, gaining insights 
+                  from Microsoft professionals and expanding industry knowledge.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        {/* Education Section */}
+        <motion.section 
+          id="education" 
+          className="modern-section"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="section-header">
+            <motion.div 
+              className="section-icon-container"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+            >
+              <AcademicCapIcon className="section-icon" />
+            </motion.div>
+            <div>
+              <h3 className="section-title">Education</h3>
+              <p className="section-subtitle">Academic achievements and learning journey</p>
+            </div>
+          </div>
+          
+          <div className="education-grid">
+            <motion.div 
+              className="education-card"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5, scale: 1.02 }}
+            >
+              <div className="education-header">
+                <h4>BSc (Hons) Computer Science</h4>
+                <span className="education-period">2023 - Present</span>
+              </div>
+              <p className="education-institution">London South Bank University</p>
+              <div className="education-status">
+                <span className="status-badge current">Current</span>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              className="education-card"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5, scale: 1.02 }}
+            >
+              <div className="education-header">
+                <h4>A Levels & GCSEs</h4>
+                <span className="education-period">2020 - 2023</span>
+              </div>
+              <p className="education-institution">Brentwood Independent School</p>
+              <div className="education-status">
+                <span className="status-badge completed">Completed</span>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              className="education-card"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5, scale: 1.02 }}
+            >
+              <div className="education-header">
+                <h4>Quantum Summer School</h4>
+                <span className="education-period">Aug 2024</span>
+              </div>
+              <p className="education-institution">UK Government</p>
+              <div className="education-status">
+                <span className="status-badge special">Special Program</span>
+              </div>
+            </motion.div>
+          </div>
+        </motion.section>
+        {/* Skills Section */}
+        <motion.section 
+          id="skills" 
+          className="modern-section"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="section-header">
+            <motion.div 
+              className="section-icon-container"
+              whileHover={{ scale: 1.1, rotate: -5 }}
+            >
+              <CodeBracketIcon className="section-icon" />
+            </motion.div>
+            <div>
+              <h3 className="section-title">Technical Skills</h3>
+              <p className="section-subtitle">Technologies and tools I work with</p>
+            </div>
+          </div>
+          
+          <div className="skills-grid">
+            <motion.div 
+              className="skill-card"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5 }}
+            >
+              <div className="skill-header">
+                <ChartBarIcon className="skill-icon" />
+                <h4>AI & Machine Learning</h4>
+              </div>
+              <p className="skill-description">
+                Python (Pandas, NumPy, Scikit-learn, Matplotlib), Jupyter Notebook, data-driven modeling
+              </p>
+              <div className="skill-progress">
+                <div className="skill-progress-bar">
+                  <motion.div 
+                    className="skill-progress-fill"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: '90%' }}
+                    transition={{ duration: 1.5, delay: 0.5 }}
+                    viewport={{ once: true }}
+                  />
+                </div>
+                <span className="skill-percentage">90%</span>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              className="skill-card"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5 }}
+            >
+              <div className="skill-header">
+                <CodeBracketIcon className="skill-icon" />
+                <h4>Programming Languages</h4>
+              </div>
+              <p className="skill-description">
+                Python (advanced), Java, C#, R, SQL
+              </p>
+              <div className="skill-progress">
+                <div className="skill-progress-bar">
+                  <motion.div 
+                    className="skill-progress-fill"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: '85%' }}
+                    transition={{ duration: 1.5, delay: 0.7 }}
+                    viewport={{ once: true }}
+                  />
+                </div>
+                <span className="skill-percentage">85%</span>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              className="skill-card"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5 }}
+            >
+              <div className="skill-header">
+                <ChartBarIcon className="skill-icon" />
+                <h4>Data Analysis & Visualization</h4>
+              </div>
+              <p className="skill-description">
+                Power BI, SQL, statistical modeling for insights
+              </p>
+              <div className="skill-progress">
+                <div className="skill-progress-bar">
+                  <motion.div 
+                    className="skill-progress-fill"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: '80%' }}
+                    transition={{ duration: 1.5, delay: 0.9 }}
+                    viewport={{ once: true }}
+                  />
+                </div>
+                <span className="skill-percentage">80%</span>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              className="skill-card"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5 }}
+            >
+              <div className="skill-header">
+                <UsersIcon className="skill-icon" />
+                <h4>Collaboration & Communication</h4>
+              </div>
+              <p className="skill-description">
+                Delivered coding workshops (100+ students), mentored by Microsoft professionals
+              </p>
+              <div className="skill-progress">
+                <div className="skill-progress-bar">
+                  <motion.div 
+                    className="skill-progress-fill"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: '95%' }}
+                    transition={{ duration: 1.5, delay: 1.1 }}
+                    viewport={{ once: true }}
+                  />
+                </div>
+                <span className="skill-percentage">95%</span>
+              </div>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        {/* Qualifications Section */}
+        <motion.section 
+          id="qualifications" 
+          className="modern-section"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="section-header">
+            <motion.div 
+              className="section-icon-container"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+            >
+              <StarIcon className="section-icon" />
+            </motion.div>
+            <div>
+              <h3 className="section-title">Certifications & Qualifications</h3>
+              <p className="section-subtitle">Continuous learning and skill development</p>
+            </div>
+          </div>
+          
+          <div className="certifications-grid">
+            {[
+              { title: 'AI and Machine Learning Bootcamp', date: 'January 2024 - July 2024', type: 'Bootcamp' },
+              { title: 'Benefits of GitHub Community', date: 'April 2024', type: 'LinkedIn Learning' },
+              { title: 'Introduction to SQL', date: 'May 2024', type: 'SoloLearn' },
+              { title: 'Learning Power BI Desktop', date: 'May 2024', type: 'Course' },
+              { title: 'UK Government Quantum Summer School', date: 'August 2024', type: 'Government Program' },
+              { title: 'British Airways - Data Science Job Simulation', date: 'September 2024', type: 'Simulation' },
+              { title: 'Introduction to Generative AI', date: 'May 2025', type: 'Course' }
+            ].map((cert, index) => (
+              <motion.div 
+                key={index}
+                className="certification-card"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.02, y: -2 }}
+              >
+                <div className="cert-header">
+                  <StarIcon className="cert-icon" />
+                  <span className="cert-type">{cert.type}</span>
+                </div>
+                <h4 className="cert-title">{cert.title}</h4>
+                <p className="cert-date">{cert.date}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* Projects Section */}
+        <motion.section 
+          id="projects" 
+          className="modern-section"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="section-header">
+            <motion.div 
+              className="section-icon-container"
+              whileHover={{ scale: 1.1, rotate: -5 }}
+            >
+              <ChartBarIcon className="section-icon" />
+            </motion.div>
+            <div>
+              <h3 className="section-title">Featured Projects</h3>
+              <p className="section-subtitle">Showcasing my best work and innovations</p>
+            </div>
+          </div>
+          
+          <div className="projects-grid">
+            {projectsData.map((project, index) => (
+              <ModernProjectCard 
+                key={project.id}
+                project={project}
+                index={index}
+              />
+            ))}
+          </div>
+        </motion.section>
+        {/* Contact Section */}
+        <motion.section 
+          id="contact"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <Contact />
+        </motion.section>
+
+        {/* Scroll to top button */}
+        <AnimatePresence>
+          {showScroll && (
+            <motion.button 
+              className="scroll-to-top-modern"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <ArrowUpIcon className="scroll-icon" />
+            </motion.button>
+          )}
+        </AnimatePresence>
+      </main>
+
+      {/* Modern Footer */}
+      <motion.footer 
+        className="modern-footer"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="footer-content">
+          <div className="footer-section">
+            <h4>Yameen Munir</h4>
+            <p>AI Enthusiast & Python Developer</p>
+          </div>
+          
+          <div className="footer-section">
+            <h4>Quick Links</h4>
+            <div className="footer-links">
+              {sections.slice(0, 4).map((section) => (
+                <button 
+                  key={section.id}
+                  onClick={() => scrollToSection(section.id)}
+                  className="footer-link"
+                >
+                  {section.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          
+          <div className="footer-section">
+            <h4>Connect</h4>
+            <div className="footer-social">
+              <a href="https://www.linkedin.com/in/yameen-munir/" target="_blank" rel="noopener noreferrer">
+                LinkedIn
               </a>
-              <a href="https://github.com/YameenMunir" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.997.108-.775.418-1.305.762-1.605-2.665-.305-5.466-1.334-5.466-5.931 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.553 3.297-1.23 3.297-1.23.653 1.653.242 2.873.119 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.803 5.624-5.475 5.921.43.371.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              <a href="https://github.com/YameenMunir" target="_blank" rel="noopener noreferrer">
+                GitHub
               </a>
-              <a href="mailto:yameenmunir05@gmail.com" className="email-link" aria-label="Email">
-                <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 13.065 2.4 6.6A2 2 0 0 1 4 6h16a2 2 0 0 1 1.6.6l-9.6 6.465Zm-9.6 7.335V7.47l9.6 6.465 9.6-6.465v12.93A2 2 0 0 1 20 22H4a2 2 0 0 1-1.6-.6Z"/></svg>
+              <a href="mailto:yameenmunir05@gmail.com">
+                Email
               </a>
             </div>
           </div>
         </div>
-      </header>
-      <nav className="navbar glass-navbar">
-        {/* Burger icon for mobile */}
-        <button
-          className="burger"
-          aria-label="Open navigation"
-          aria-expanded={navOpen}
-          aria-controls="main-nav"
-          onClick={() => setNavOpen(v => !v)}
-          style={{
-            display: 'none',
-            background: 'none',
-            border: 'none',
-            padding: 0,
-            marginRight: '1rem',
-            cursor: 'pointer',
-            width: '48px',
-            height: '48px',
-            minWidth: '48px',
-            minHeight: '48px',
-            aspectRatio: '1 / 1',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxSizing: 'border-box',
-            borderRadius: 0 // ensure square shape, no rounding
-          }}
-        >
-          {/* Only visible on small screens via CSS */}
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            style={{
-              display: 'block',
-              margin: '0 auto'
-            }}
-          >
-            <line x1="4" y1="7" x2="20" y2="7"/>
-            <line x1="4" y1="12" x2="20" y2="12"/>
-            <line x1="4" y1="17" x2="20" y2="17"/>
-          </svg>
-        </button>
-        <ul
-          id="main-nav"
-          className={navOpen ? 'open' : ''}
-          style={{
-            ...(window.innerWidth <= 768
-              ? {
-                  display: navOpen ? 'block' : 'none',
-                  position: 'absolute',
-                  top: '100%',
-                  left: 0,
-                  width: '100%',
-                  // Harmonize with site palette (glass effect, blue/white theme)
-                  background: 'rgba(30, 144, 255, 0.92)', // #1e90ff with opacity
-                  boxShadow: '0 2px 16px rgba(30,144,255,0.12)',
-                  zIndex: 10,
-                  borderRadius: '0 0 1rem 1rem',
-                  backdropFilter: 'blur(8px)',
-                  padding: '1.2rem 0',
-                  textAlign: 'center'
-                }
-              : { display: 'flex' })
-          }}
-        >
-          {sections.map((s) => (
-            <li key={s.id} style={window.innerWidth <= 768 ? {margin: '0.6rem 0'} : {}}>
-              <button
-                className={active === s.id ? 'active' : ''}
-                onClick={() => {
-                  setActive(s.id);
-                  scrollToSection(s.id);
-                  setNavOpen(false); // Close nav on mobile after click
-                }}
-                style={
-                  window.innerWidth <= 768
-                    ? {
-                        color: '#fff',
-                        fontSize: '1.15rem',
-                        fontWeight: 600,
-                        background: 'none',
-                        border: 'none',
-                        padding: '0.7rem 1.5rem',
-                        borderRadius: '0.5rem',
-                        transition: 'background 0.2s',
-                        cursor: 'pointer'
-                      }
-                    : {}
-                }
-              >
-                {s.label}
-              </button>
-            </li>
-          ))}
-        </ul>
-        <style>
-          {`
-            @media (max-width: 768px) {
-              .navbar .burger {
-                display: block !important;
-              }
-              .navbar ul {
-                display: none;
-              }
-              .navbar ul.open {
-                display: block;
-              }
-              .navbar ul.open button.active,
-              .navbar ul.open button:hover {
-                background: rgba(255,255,255,0.12);
-                color: #fff;
-              }
-            }
-            @media (min-width: 769px) {
-              .navbar .burger {
-                display: none !important;
-              }
-              .navbar ul {
-                display: flex !important;
-                position: static !important;
-                background: none !important;
-                box-shadow: none !important;
-                border-radius: 0 !important;
-                padding: 0 !important;
-                text-align: left !important;
-              }
-              .navbar ul li button {
-                color: inherit !important;
-                font-size: inherit !important;
-                font-weight: inherit !important;
-                background: none !important;
-                border: none !important;
-                padding: 0.5rem 1.2rem !important;
-                border-radius: 0.5rem !important;
-              }
-            }
-          `}
-        </style>
-      </nav>
-      <main className="container">
-        {/* Cinematic Blobs for background */}
-        <div className="fixed top-[10%] left-[60%] w-[400px] h-[400px] rounded-full blur-3xl opacity-25 bg-[#4eaaff] z-[-1] animate-blob1 pointer-events-none" />
-        <div className="fixed top-[60%] left-[20%] w-[300px] h-[300px] rounded-full blur-3xl opacity-20 bg-[#00bfff] z-[-1] animate-blob2 pointer-events-none" />
-        <div className="fixed top-[40%] left-[80%] w-[250px] h-[250px] rounded-full blur-3xl opacity-20 bg-[#1e90ff] z-[-1] animate-blob3 pointer-events-none" />
-        <motion.section id="about" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} viewport={{ once: true }}>
-          <h3>About Me</h3>
-          <p className="lead">Hello! I'm <span className="highlight">Yameen Munir</span>, an <span className="highlight">AI enthusiast</span> and <span className="highlight">Python developer</span> based in London. As a final-year BSc (Hons) Computer Science student at London South Bank University, I specialize in <span className="highlight">AI</span>, <span className="highlight">Machine Learning</span>, <span className="highlight">Data Science</span>, and <span className="highlight">Data Analysis</span>.</p>
-          <p className="lead">I'm actively seeking opportunities—remote or onsite—where I can apply my skills and contribute to forward-thinking projects in <span className="highlight">AI/ML</span>, <span className="highlight">Data Science</span>, and <span className="highlight">Data Analysis</span>.</p>
-        </motion.section>
-        <motion.section id="experience" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} viewport={{ once: true }}>
-          <h3>Professional & Program Experience</h3>
-          <ul className="timeline">
-            <li><span className="timeline-dot"></span><strong>Customer Service Specialist</strong> at Youshiko LTD (Jan 2020 - Present): Achieved high customer satisfaction, streamlined communication, and demonstrated software proficiency.</li>
-            <li><span className="timeline-dot"></span><strong>CSI Ambassador</strong> at London South Bank University (Jul 2024 - Present): Developed coding workshops and led career fairs to foster computer science passion among students.</li>
-            <li><span className="timeline-dot"></span><strong>Mentee</strong> in Microsoft Embrace Program (Oct 2024 - Dec 2024): Participated in an 8-week mentorship, gaining insights from a Microsoft professional.</li>
-          </ul>
-        </motion.section>
-        <motion.section id="education" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} viewport={{ once: true }}>
-          <h3>Education</h3>
-          <ul className="timeline">
-            <li><span className="timeline-dot"></span><strong>BSc (Hons) Computer Science</strong>, London South Bank University (Sep 2023 - Present)</li>
-            <li><span className="timeline-dot"></span><strong>A Levels & GCSEs</strong>, Brentwood Independent School (Sep 2020 - Jun 2023)</li>
-            <li><span className="timeline-dot"></span><strong>Quantum Summer School</strong>, UK Government (Aug 2024)</li>
-          </ul>
-        </motion.section>
-        <motion.section id="skills" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }} viewport={{ once: true }}>
-          <h3>Key Skills</h3>
-          <ul className="timeline">
-            <li className="skill-item">
-              <span className="timeline-dot"></span>
-              <div className="skill-content">
-                <strong>AI & Machine Learning:</strong> Python (Pandas, NumPy, Scikit-learn, Matplotlib), Jupyter Notebook, data-driven modeling.
-                <div className="skill-bar"><div className="skill-bar-fill" style={{width:'90%'}}></div></div>
-              </div>
-            </li>
-            <li className="skill-item">
-              <span className="timeline-dot"></span>
-              <div className="skill-content">
-                <strong>Programming:</strong> Python (advanced), Java, C#, R, SQL
-                <div className="skill-bar"><div className="skill-bar-fill" style={{width:'85%'}}></div></div>
-              </div>
-            </li>
-            <li className="skill-item">
-              <span className="timeline-dot"></span>
-              <div className="skill-content">
-                <strong>Data Analysis & Visualization:</strong> Power BI, SQL, statistical modeling for insights
-                <div className="skill-bar"><div className="skill-bar-fill" style={{width:'80%'}}></div></div>
-              </div>
-            </li>
-            <li className="skill-item">
-              <span className="timeline-dot"></span>
-              <div className="skill-content">
-                <strong>Research & Problem-Solving:</strong> Strong analytical skills, e-commerce data prediction, algorithm design
-                <div className="skill-bar"><div className="skill-bar-fill" style={{width:'75%'}}></div></div>
-              </div>
-            </li>
-            <li className="skill-item">
-              <span className="timeline-dot"></span>
-              <div className="skill-content">
-                <strong>Collaboration & Communication:</strong> Delivered coding workshops (100+ students), mentored by Microsoft professionals, led career fairs (500+ attendees)
-                <div className="skill-bar"><div className="skill-bar-fill" style={{width:'95%'}}></div></div>
-              </div>
-            </li>
-          </ul>
-        </motion.section>
-        <motion.section id="qualifications" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.35 }} viewport={{ once: true }}>
-          <h3>ADDITIONAL QUALIFICATIONS</h3>
-          <ul className="timeline">
-            <li><span className="timeline-dot"></span>AI and Machine Learning Bootcamp | January 2024 - July 2024</li>
-            <li><span className="timeline-dot"></span>Benefits of GitHub Community (LinkedIn Learning) | April 2024</li>
-            <li><span className="timeline-dot"></span>Introduction to SQL (SoloLearn) | May 2024</li>
-            <li><span className="timeline-dot"></span>Learning Power BI Desktop | May 2024</li>
-            <li><span className="timeline-dot"></span>UK Government, Quantum Summer School | August 2024</li>
-            <li><span className="timeline-dot"></span>British Airways - Data Science Job Simulation | September 2024</li>
-            <li><span className="timeline-dot"></span>Introduction to Generative IA | May 2025</li>
-          </ul>
-        </motion.section>
-        <motion.section id="projects" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4 }} viewport={{ once: true }}>
-          <h3>Highlighted Projects</h3>
-          <div className="project-grid">
-            <div className="project">
-              <h4>AI-Recipe-Generator</h4>
-              <p>A Streamlit app leveraging Google's Gemini AI to generate personalized recipes based on user input (ingredients, dietary restrictions, meal types).</p>
-              {expandedProjects['recipe-generator'] && (
-                <div className="project-details">
-                  <h5>Key Features:</h5>
-                  <ul>
-                    <li>Real-time recipe generation using Gemini AI</li>
-                    <li>Customizable dietary preferences</li>
-                    <li>Ingredient-based recipe suggestions</li>
-                    <li>User-friendly Streamlit interface</li>
-                  </ul>
-                  <h5>Technologies Used:</h5>
-                  <ul>
-                    <li>Python</li>
-                    <li>Streamlit</li>
-                    <li>Google Gemini AI</li>
-                    <li>Natural Language Processing</li>
-                  </ul>
-                </div>
-              )}
-              <div className="project-actions">
-                <a className="project-link" href="https://github.com/YameenMunir/AI-Recipe-Generator" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                <button 
-                  className="details-button"
-                  onClick={() => toggleProjectDetails('recipe-generator')}
-                >
-                  {expandedProjects['recipe-generator'] ? 'Show Less' : 'Show More'}
-                </button>
-              </div>
-            </div>
-            <div className="project">
-              <h4>Cricket Match Data Analysis and Prediction</h4>
-              <p>Comprehensive analysis and machine learning-based prediction of cricket match outcomes, player performance, runs, and wickets.</p>
-              {expandedProjects['cricket-analysis'] && (
-                <div className="project-details">
-                  <h5>Key Features:</h5>
-                  <ul>
-                    <li>Match outcome prediction</li>
-                    <li>Player performance analytics</li>
-                    <li>Statistical modeling</li>
-                    <li>Interactive visualizations</li>
-                  </ul>
-                  <h5>Technologies Used:</h5>
-                  <ul>
-                    <li>Python</li>
-                    <li>Pandas & NumPy</li>
-                    <li>Scikit-learn</li>
-                    <li>Matplotlib & Seaborn</li>
-                  </ul>
-                </div>
-              )}
-              <div className="project-actions">
-                <a className="project-link" href="https://github.com/YameenMunir/Cricket-Match-Data-Analysis-and-Prediction-using-Machine-Learning" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                <button 
-                  className="details-button"
-                  onClick={() => toggleProjectDetails('cricket-analysis')}
-                >
-                  {expandedProjects['cricket-analysis'] ? 'Show Less' : 'Show More'}
-                </button>
-              </div>
-            </div>
-            <div className="project">
-              <h4>Diabetes Prediction and Prevention App</h4>
-              <p>A Streamlit app for predicting diabetes risk and providing prevention tips using machine learning models.</p>
-              {expandedProjects['diabetes-app'] && (
-                <div className="project-details">
-                  <h5>Key Features:</h5>
-                  <ul>
-                    <li>Risk prediction using ML models</li>
-                    <li>Personalized prevention tips</li>
-                    <li>Interactive data visualization</li>
-                    <li>User-friendly input form</li>
-                  </ul>
-                  <h5>Technologies Used:</h5>
-                  <ul>
-                    <li>Python</li>
-                    <li>Streamlit</li>
-                    <li>Scikit-learn</li>
-                    <li>Pandas & NumPy</li>
-                  </ul>
-                </div>
-              )}
-              <div className="project-actions">
-                <a className="project-link" href="https://github.com/YameenMunir/Diabetes-Prediction-and-Prevention-App-with-Streamlit" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                <button 
-                  className="details-button"
-                  onClick={() => toggleProjectDetails('diabetes-app')}
-                >
-                  {expandedProjects['diabetes-app'] ? 'Show Less' : 'Show More'}
-                </button>
-              </div>
-            </div>
-            <div className="project">
-              <h4>Tokyo Olympics Data Analysis</h4>
-              <p>In-depth data analysis of the Tokyo Olympics, exploring medal distributions, athlete metrics, gender representation, and COVID-19 impact.</p>
-              {expandedProjects['tokyo-olympics'] && (
-                <div className="project-details">
-                  <h5>Key Features:</h5>
-                  <ul>
-                    <li>Medal distribution analysis</li>
-                    <li>Athlete performance metrics</li>
-                    <li>Gender representation insights</li>
-                    <li>COVID-19 impact assessment</li>
-                  </ul>
-                  <h5>Technologies Used:</h5>
-                  <ul>
-                    <li>Python</li>
-                    <li>Pandas</li>
-                    <li>Matplotlib & Seaborn</li>
-                    <li>Jupyter Notebook</li>
-                  </ul>
-                </div>
-              )}
-              <div className="project-actions">
-                <a className="project-link" href="https://github.com/YameenMunir/Tokyo-Olympics-Data-analysis" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                <button 
-                  className="details-button"
-                  onClick={() => toggleProjectDetails('tokyo-olympics')}
-                >
-                  {expandedProjects['tokyo-olympics'] ? 'Show Less' : 'Show More'}
-                </button>
-              </div>
-            </div>
-          </div>
-        </motion.section>
-        <motion.section id="extracurricular" className="fade-in-section card-section" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.5 }} viewport={{ once: true }}>
-          <h3>Extracurricular Activities</h3>
-          <ul className="timeline">
-            <li><span className="timeline-dot"></span><strong>Simventure Competition 2024:</strong> Participated in a business simulation competition, collaborating with a team of 4 on business decision-making.</li>
-          </ul>
-        </motion.section>
-        <motion.section id="contact" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.7 }} viewport={{ once: true }}>
-          <Contact />
-        </motion.section>
-        {showScroll && (
-          <button className="scroll-to-top" onClick={() => window.scrollTo({top:0,behavior:'smooth'})} aria-label="Scroll to top">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-          </button>
-        )}
-      </main>
-      <footer className="footer-copyright">
-        © 2025 Yameen Munir. All rights reserved.
-      </footer>
+        
+        <div className="footer-bottom">
+          <p>&copy; 2025 Yameen Munir. All rights reserved.</p>
+          <p>Built with React & Framer Motion</p>
+        </div>
+      </motion.footer>
     </>
   );
 }
