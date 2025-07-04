@@ -903,7 +903,6 @@ function App() {
         
         <div className="footer-bottom">
           <p>&copy; 2025 Yameen Munir. All rights reserved.</p>
-          <p>Built with React & Framer Motion</p>
         </div>
       </motion.footer>
     </>
