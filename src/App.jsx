@@ -24,8 +24,8 @@ import Typewriter from './components/Typewriter';
 
 const sections = [
   { id: 'about', label: 'About', icon: UsersIcon },
-  { id: 'education', label: 'Education', icon: AcademicCapIcon },
   { id: 'experience', label: 'Experience', icon: BriefcaseIcon },
+  { id: 'education', label: 'Education', icon: AcademicCapIcon },
   { id: 'skills', label: 'Skills', icon: CodeBracketIcon },
   { id: 'qualifications', label: 'Certifications', icon: StarIcon },
   { id: 'projects', label: 'Projects', icon: ChartBarIcon },
