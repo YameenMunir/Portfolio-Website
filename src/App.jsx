@@ -474,6 +474,25 @@ function App() {
             >
               <div className="timeline-dot"></div>
               <div className="timeline-content">
+                <h4>Technology & Engineering Virtual Intern</h4>
+                <p className="timeline-company">Internship Experience UK (IEUK) - Bright Network</p>
+                <p className="timeline-date">Jul 2025</p>
+                <p className="timeline-description">
+                  Completed a structured virtual internship developing technical and employability skills, 
+                  participating in industry-led workshops and presenting solutions to real-world challenges.
+                </p>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              className="timeline-item"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="timeline-dot"></div>
+              <div className="timeline-content">
                 <h4>Customer Service Specialist</h4>
                 <p className="timeline-company">Youshiko LTD</p>
                 <p className="timeline-date">Jan 2020 - Present</p>
@@ -488,7 +507,7 @@ function App() {
               className="timeline-item"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             >
               <div className="timeline-dot"></div>
@@ -507,7 +526,7 @@ function App() {
               className="timeline-item"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
             >
               <div className="timeline-dot"></div>
