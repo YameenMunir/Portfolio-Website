@@ -1830,8 +1830,24 @@ body {
   
   .footer-content {
     grid-template-columns: 1fr;
-    text-align: center;
     gap: 1.5rem;
+    justify-items: center;
+  }
+  
+  .footer-section {
+    text-align: left;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  /* Ensure Quick Links are aligned consistently with other section headings */
+  .quick-links-section h4 {
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+  
+  .quick-links-section .footer-links {
+    align-items: flex-start;
   }
   
   .footer-bottom {

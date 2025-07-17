@@ -889,7 +889,7 @@ function App() {
             <p>AI Enthusiast & Python Developer</p>
           </div>
           
-          <div className="footer-section">
+          <div className="footer-section quick-links-section">
             <h4>Quick Links</h4>
             <div className="footer-links">
               {sections.slice(0, 4).map((section) => (
