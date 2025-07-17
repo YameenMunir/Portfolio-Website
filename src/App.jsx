@@ -493,25 +493,6 @@ function App() {
             >
               <div className="timeline-dot"></div>
               <div className="timeline-content">
-                <h4>Customer Service Specialist</h4>
-                <p className="timeline-company">Youshiko LTD</p>
-                <p className="timeline-date">Jan 2020 - Present</p>
-                <p className="timeline-description">
-                  Achieved high customer satisfaction, streamlined communication, 
-                  and demonstrated software proficiency in a dynamic environment.
-                </p>
-              </div>
-            </motion.div>
-            
-            <motion.div 
-              className="timeline-item"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              <div className="timeline-dot"></div>
-              <div className="timeline-content">
                 <h4>CSI Ambassador</h4>
                 <p className="timeline-company">London South Bank University</p>
                 <p className="timeline-date">Jul 2024 - Present</p>
@@ -526,7 +507,7 @@ function App() {
               className="timeline-item"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             >
               <div className="timeline-dot"></div>
@@ -537,6 +518,25 @@ function App() {
                 <p className="timeline-description">
                   Participated in an intensive 8-week mentorship program, gaining insights 
                   from Microsoft professionals and expanding industry knowledge.
+                </p>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              className="timeline-item"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="timeline-dot"></div>
+              <div className="timeline-content">
+                <h4>Customer Service Specialist</h4>
+                <p className="timeline-company">Youshiko LTD</p>
+                <p className="timeline-date">Jan 2020 - Present</p>
+                <p className="timeline-description">
+                  Achieved high customer satisfaction, streamlined communication, 
+                  and demonstrated software proficiency in a dynamic environment.
                 </p>
               </div>
             </motion.div>
