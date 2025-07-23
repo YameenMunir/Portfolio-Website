@@ -792,6 +792,7 @@ function App() {
               { title: 'Learning Power BI Desktop', date: 'May 2024', type: 'Course' },
               { title: 'UK Government Quantum Summer School', date: 'August 2024', type: 'Government Program' },
               { title: 'British Airways - Data Science Job Simulation', date: 'September 2024', type: 'Simulation' },
+              { title: 'Internship Experience UK (IEUK 2025)', date: 'July 2025', type: 'Bright Network' },
               { title: 'Introduction to Generative AI', date: 'May 2025', type: 'Course' }
             ].map((cert, index) => (
               <motion.div 
