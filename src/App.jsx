@@ -474,13 +474,21 @@ function App() {
             >
               <div className="timeline-dot"></div>
               <div className="timeline-content">
-                <h4>Technology & Engineering Virtual Intern</h4>
-                <p className="timeline-company">Internship Experience UK (IEUK) - Bright Network</p>
-                <p className="timeline-date">Jul 2025</p>
+                <h4>Student Researcher</h4>
+                <p className="timeline-company">London South Bank University</p>
+                <p className="timeline-date">Jul 2025 - Present</p>
                 <p className="timeline-description">
-                  Completed a structured virtual internship developing technical and employability skills, 
-                  participating in industry-led workshops and presenting solutions to real-world challenges.
+                  Conducting in-depth analysis of the LRS2 (Lip Reading Sentences 2) dataset, focusing on multimodal 
+                  speech and visual data alignment. Evaluating dataset structure, metadata, and annotation formats to 
+                  support reproducible machine learning workflows. Designed a comprehensive Entity-Relationship Diagram (ERD) 
+                  to model multimodal data relationships, including audio, video, and transcript entities.
                 </p>
+                <div className="timeline-skills">
+                  <span className="skill-tag">Python</span>
+                  <span className="skill-tag">Data Science</span>
+                  <span className="skill-tag">Statistical Analysis</span>
+                  <span className="skill-tag">Research</span>
+                </div>
               </div>
             </motion.div>
             
@@ -493,13 +501,23 @@ function App() {
             >
               <div className="timeline-dot"></div>
               <div className="timeline-content">
-                <h4>CSI Ambassador</h4>
-                <p className="timeline-company">London South Bank University</p>
-                <p className="timeline-date">Jul 2024 - Present</p>
+                <h4>Technology & Engineering Virtual Intern</h4>
+                <p className="timeline-company">Internship Experience UK (IEUK) - Bright Network</p>
+                <p className="timeline-date">Jul 2025</p>
                 <p className="timeline-description">
-                  Developed coding workshops and led career fairs to foster computer science 
-                  passion among students, reaching 100+ participants.
+                  Engaged in a structured virtual internship designed to develop key technical and employability skills in the 
+                  technology and engineering sectors. Participated in workshops led by industry leaders (Google, Cisco, JLR, 
+                  Lloyds Banking Group) on topics including AI applications, project management, creative problem-solving, and 
+                  assessment center strategies. Completed a sector skills project, simulating real-world industry challenges, 
+                  and presented solutions to peers for constructive feedback.
                 </p>
+                <div className="timeline-skills">
+                  <span className="skill-tag">Problem Solving</span>
+                  <span className="skill-tag">AI Literacy</span>
+                  <span className="skill-tag">Project Management</span>
+                  <span className="skill-tag">Technical Communication</span>
+                  <span className="skill-tag">Networking</span>
+                </div>
               </div>
             </motion.div>
             
@@ -512,13 +530,22 @@ function App() {
             >
               <div className="timeline-dot"></div>
               <div className="timeline-content">
-                <h4>Mentee - Microsoft Embrace Program</h4>
-                <p className="timeline-company">Microsoft</p>
-                <p className="timeline-date">Oct 2024 - Dec 2024</p>
+                <h4>Welfare Committee</h4>
+                <p className="timeline-company">London Southhack</p>
+                <p className="timeline-date">Nov 2024 - Present</p>
                 <p className="timeline-description">
-                  Participated in an intensive 8-week mentorship program, gaining insights 
-                  from Microsoft professionals and expanding industry knowledge.
+                  Oversaw the management of SouthHack's official Discord server, ensuring smooth communication and 
+                  adherence to community guidelines. Coordinated pre-event planning and logistics, working closely 
+                  with team members to streamline event execution. Provided real-time, on-the-ground support during 
+                  hackathons and tech meetups to ensure successful event delivery.
                 </p>
+                <div className="timeline-skills">
+                  <span className="skill-tag">Event Coordination</span>
+                  <span className="skill-tag">Community Management</span>
+                  <span className="skill-tag">Technical Communication</span>
+                  <span className="skill-tag">Problem Solving</span>
+                  <span className="skill-tag">Team Collaboration</span>
+                </div>
               </div>
             </motion.div>
             
@@ -531,13 +558,79 @@ function App() {
             >
               <div className="timeline-dot"></div>
               <div className="timeline-content">
+                <h4>Mentee - Microsoft Embrace Program</h4>
+                <p className="timeline-company">Microsoft</p>
+                <p className="timeline-date">Oct 2024 - Dec 2024</p>
+                <p className="timeline-description">
+                  Participated in exclusive workshops led by Microsoft professionals, gaining insights into cutting-edge 
+                  developments in AI, machine learning, and cybersecurity. Engaged in mentorship sessions focused on 
+                  personal development, career navigation, and real-world tech applications. Explored ethical and 
+                  responsible AI practices through case studies and group discussions with industry mentors.
+                </p>
+                <div className="timeline-skills">
+                  <span className="skill-tag">Career Development</span>
+                  <span className="skill-tag">Ethical AI</span>
+                  <span className="skill-tag">Growth Mindset</span>
+                  <span className="skill-tag">Time Management</span>
+                  <span className="skill-tag">Networking</span>
+                  <span className="skill-tag">Industry Awareness</span>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              className="timeline-item"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <div className="timeline-dot"></div>
+              <div className="timeline-content">
+                <h4>CSI Ambassador</h4>
+                <p className="timeline-company">London South Bank University</p>
+                <p className="timeline-date">Jul 2024 - Present</p>
+                <p className="timeline-description">
+                  Developed coding workshops and led career fairs to foster computer science 
+                  passion among students, reaching 100+ participants.
+                </p>
+                <div className="timeline-skills">
+                  <span className="skill-tag">Workshop Development</span>
+                  <span className="skill-tag">Public Speaking</span>
+                  <span className="skill-tag">Event Management</span>
+                  <span className="skill-tag">Mentoring</span>
+                  <span className="skill-tag">Community Outreach</span>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              className="timeline-item"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 1.0 }}
+              viewport={{ once: true }}
+            >
+              <div className="timeline-dot"></div>
+              <div className="timeline-content">
                 <h4>Customer Service Specialist</h4>
                 <p className="timeline-company">Youshiko LTD</p>
                 <p className="timeline-date">Jan 2020 - Present</p>
                 <p className="timeline-description">
-                  Achieved high customer satisfaction, streamlined communication, 
-                  and demonstrated software proficiency in a dynamic environment.
+                  Resolved 200+ monthly technical inquiries, improving customer retention by 15% through data-informed 
+                  service enhancements. Managed and cleaned daily customer datasets across Amazon, eBay, and Shopify 
+                  platforms, using Python and Excel. Developed predictive analytics models with Pandas and Scikit-learn 
+                  to anticipate product demand trends and inventory cycles. Presented visual dashboards in Power BI and 
+                  Matplotlib to guide business strategy based on customer insights.
                 </p>
+                <div className="timeline-skills">
+                  <span className="skill-tag">Analytical Skills</span>
+                  <span className="skill-tag">Customer Service</span>
+                  <span className="skill-tag">Data Analysis</span>
+                  <span className="skill-tag">Product Management</span>
+                  <span className="skill-tag">Communication</span>
+                  <span className="skill-tag">Statistical Data Analysis</span>
+                </div>
               </div>
             </motion.div>
           </div>
