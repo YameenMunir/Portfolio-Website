@@ -474,9 +474,38 @@ function App() {
             >
               <div className="timeline-dot"></div>
               <div className="timeline-content">
+                <h4>Insight Day Participant</h4>
+                <p className="timeline-company">Mako Trading - Aleto Foundation Partnership</p>
+                <p className="timeline-date">Sep 2025</p>
+                <p className="timeline-description">
+                  Attended an immersive insight day at MAKO Trading's London office, exploring the intersection of finance 
+                  and technology. Participated in interactive trading simulations, career sessions, and networking opportunities. 
+                  Gained valuable insights into trading operations, software development in fintech, and graduate programme pathways. 
+                  Enhanced understanding of data-driven solutions in financial markets and reinforced passion for building 
+                  stakeholder-relevant technology solutions.
+                </p>
+                <div className="timeline-skills">
+                  <span className="skill-tag">Financial Technology</span>
+                  <span className="skill-tag">Trading Systems</span>
+                  <span className="skill-tag">Data-Driven Solutions</span>
+                  <span className="skill-tag">Networking</span>
+                  <span className="skill-tag">Industry Insights</span>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              className="timeline-item"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="timeline-dot"></div>
+              <div className="timeline-content">
                 <h4>Student Researcher</h4>
                 <p className="timeline-company">London South Bank University</p>
-                <p className="timeline-date">Jul 2025 - Present</p>
+                <p className="timeline-date">Jul 2025 - Sep 2025</p>
                 <p className="timeline-description">
                   Conducting in-depth analysis of the LRS2 (Lip Reading Sentences 2) dataset, focusing on multimodal 
                   speech and visual data alignment. Evaluating dataset structure, metadata, and annotation formats to 
@@ -496,7 +525,7 @@ function App() {
               className="timeline-item"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             >
               <div className="timeline-dot"></div>
@@ -525,7 +554,7 @@ function App() {
               className="timeline-item"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
             >
               <div className="timeline-dot"></div>
@@ -553,7 +582,7 @@ function App() {
               className="timeline-item"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
               viewport={{ once: true }}
             >
               <div className="timeline-dot"></div>
@@ -582,7 +611,7 @@ function App() {
               className="timeline-item"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
+              transition={{ duration: 0.6, delay: 1.0 }}
               viewport={{ once: true }}
             >
               <div className="timeline-dot"></div>
@@ -608,7 +637,7 @@ function App() {
               className="timeline-item"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 1.0 }}
+              transition={{ duration: 0.6, delay: 1.2 }}
               viewport={{ once: true }}
             >
               <div className="timeline-dot"></div>
